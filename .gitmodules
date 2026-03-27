@@ -1,0 +1,3 @@
+[submodule "phantom-grid-os"]
+	path = phantom-grid-os
+	url = ../phantom-grid-os
