@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LedArray from '../components/LedArray.astro';
+import pkg from '../../package.json';
 ---
 
 <BaseLayout>
@@ -20,6 +21,7 @@ import LedArray from '../components/LedArray.astro';
     <a href="https://github.com/Tobeworks/phantom-grid-os" target="_blank">
       OPEN SOURCE
     </a>
+    — v{pkg.version}
   </footer>
 </BaseLayout>
 
