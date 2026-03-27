@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LedArray from '../components/LedArray.astro';
+---
+
+<BaseLayout>
+  <div class="container">
+    <LedArray />
+
+    <h1 class="wordmark">Phantom Grid</h1>
+    <p class="tagline">The world's first 100% code-based music label_</p>
+
+    <div class="status">
+      SIGNAL INCOMING <span class="cursor"></span>
+    </div>
+  </div>
+
+  <footer class="footer">
+    EST. 2026 — CYBERSPACE —
+    <a href="https://github.com/Tobeworks/phantom-grid-os" target="_blank">
+      OPEN SOURCE
+    </a>
+  </footer>
+</BaseLayout>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 0;
+    padding: 2rem;
+  }
+
+  .wordmark {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var(--fg);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    line-height: 1;
+    animation: vhs-flicker 6s step-end infinite;
+  }
+
+  @keyframes vhs-flicker {
+    0%, 100% {
+      text-shadow: 2px 0 rgba(204, 34, 34, 0.6), -2px 0 rgba(0, 200, 255, 0.25);
+      opacity: 1;
+      transform: none;
+    }
+    88% {
+      text-shadow: 2px 0 rgba(204, 34, 34, 0.6), -2px 0 rgba(0, 200, 255, 0.25);
+      opacity: 1;
+      transform: none;
+    }
+    89% {
+      text-shadow: 5px 0 rgba(204, 34, 34, 0.9), -5px 0 rgba(0, 200, 255, 0.5);
+      opacity: 0.75;
+      transform: translateX(4px);
+    }
+    90% {
+      text-shadow: -4px 0 rgba(204, 34, 34, 0.8), 4px 0 rgba(0, 200, 255, 0.4);
+      opacity: 0.85;
+      transform: translateX(-3px);
+    }
+    91% {
+      text-shadow: 2px 0 rgba(204, 34, 34, 0.6), -2px 0 rgba(0, 200, 255, 0.25);
+      opacity: 1;
+      transform: none;
+    }
+    96% {
+      text-shadow: 2px 0 rgba(204, 34, 34, 0.6), -2px 0 rgba(0, 200, 255, 0.25);
+      opacity: 1;
+      transform: none;
+    }
+    97% {
+      opacity: 0.6;
+      transform: translateX(2px);
+    }
+    97.5% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .tagline {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(204, 34, 34, 0.5);
+    margin-bottom: 4rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(220, 220, 220, 0.4);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(204, 34, 34, 0.7);
+    animation: blink 1.2s step-end infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 2rem;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(220, 220, 220, 0.2);
+    text-transform: uppercase;
+  }
+
+  .footer a {
+    color: rgba(204, 34, 34, 0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer a:hover { color: var(--accent); }
+</style>

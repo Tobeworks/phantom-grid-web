@@ -1,0 +1,53 @@
+---
+// Pattern: PG-001 catalog number encoded as on/off states (5 rows × 8 cols)
+const pattern = [
+  [1,1,0,1,0,0,1,0],
+  [1,0,1,1,0,1,1,0],
+  [1,0,0,1,0,1,0,1],
+  [0,1,1,0,1,0,0,1],
+  [0,1,0,0,1,1,0,1],
+].flat();
+---
+
+<div class="led-array" id="ledArray">
+  {pattern.map(state => (
+    <div class={`led${state ? ' on' : ''}`} />
+  ))}
+</div>
+
+<script>
+  // Subtle flicker — individual active LEDs pulse randomly
+  const grid = document.getElementById('ledArray');
+  if (grid) {
+    setInterval(() => {
+      const leds = grid.querySelectorAll<HTMLElement>('.led.on');
+      const target = leds[Math.floor(Math.random() * leds.length)];
+      if (target) {
+        target.style.opacity = '0.4';
+        setTimeout(() => { target.style.opacity = ''; }, 300);
+      }
+    }, 800);
+  }
+</script>
+
+<style>
+  .led-array {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin-bottom: 4rem;
+  }
+
+  .led {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    opacity: 0.18;
+    transition: opacity 0.3s step-end, box-shadow 0.3s step-end;
+  }
+
+  .led.on {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(204, 34, 34, 0.7);
+  }
+</style>
