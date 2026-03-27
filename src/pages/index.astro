@@ -12,17 +12,17 @@ import { Github } from 'lucide-astro';
     <h1 class="wordmark">Phantom Grid</h1>
     <p class="tagline">The world's first 100% code-based music label_</p>
 
+    <a class="github-link" href="https://github.com/Tobeworks/phantom-grid-os" target="_blank">
+      <Github size={36} />
+    </a>
+
     <div class="status">
       SIGNAL INCOMING <span class="cursor"></span>
     </div>
   </div>
 
   <footer class="footer">
-    EST. 2026 — CYBERSPACE —
-    <a href="https://github.com/Tobeworks/phantom-grid-os" target="_blank">
-      <Github size={12} /> OPEN SOURCE
-    </a>
-    — v{pkg.version}
+    EST. 2026 — CYBERSPACE — v{pkg.version}
   </footer>
 </BaseLayout>
 
@@ -104,7 +104,20 @@ import { Github } from 'lucide-astro';
     color: var(--accent);
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(204, 34, 34, 0.5);
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .github-link {
+    display: flex;
+    color: rgba(220, 220, 220, 0.3);
+    text-decoration: none;
+    margin-bottom: 3rem;
+    transition: color 0.2s, filter 0.2s;
+  }
+
+  .github-link:hover {
+    color: var(--fg);
+    filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.4));
   }
 
   .status {
