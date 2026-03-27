@@ -31,6 +31,8 @@ const {
     />
   </head>
   <body>
+    <div class="vignette"></div>
+    <div class="crt-sweep"></div>
     <slot />
   </body>
 </html>
@@ -75,5 +77,39 @@ const {
     );
     pointer-events: none;
     z-index: 99;
+  }
+
+  /* ── Vignette ───────────────────────────────────────────────── */
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+    pointer-events: none;
+    z-index: 98;
+  }
+
+  /* ── Moving scanline ────────────────────────────────────────── */
+  .crt-sweep {
+    position: fixed;
+    left: 0; right: 0;
+    top: -10%;
+    height: 8%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(220, 220, 220, 0.025) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 97;
+    animation: crt-sweep 8s linear infinite;
+  }
+
+  @keyframes crt-sweep {
+    0%   { top: -10%; }
+    100% { top: 110%; }
   }
 </style>
