@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LedArray from '../components/LedArray.astro';
 import pkg from '../../package.json';
+import { Github } from 'lucide-astro';
 ---
 
 <BaseLayout>
@@ -19,7 +20,7 @@ import pkg from '../../package.json';
   <footer class="footer">
     EST. 2026 — CYBERSPACE —
     <a href="https://github.com/Tobeworks/phantom-grid-os" target="_blank">
-      OPEN SOURCE
+      <Github size={12} /> OPEN SOURCE
     </a>
     — v{pkg.version}
   </footer>
