@@ -13,30 +13,30 @@ const {
 ---
 
 <div class="terminal">
-  <div class="terminal-header">
-    <div class="terminal-dots">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+  <div class="terminal__header flex items-center gap-3 px-4 py-2">
+    <div class="terminal__dots flex gap-1.5">
+      <span class="terminal__dot terminal__dot--active"></span>
+      <span class="terminal__dot"></span>
+      <span class="terminal__dot"></span>
     </div>
-    <span class="terminal-title">{title}</span>
+    <span class="terminal__title flex-1 text-center uppercase">{title}</span>
   </div>
-  <div class="terminal-body">
+  <div class="terminal__body flex flex-col min-h-52">
     {lines.map((line) => (
-      <div class="terminal-line">
+      <div class="terminal__line flex items-baseline gap-2">
         {line.startsWith('>') ? (
-          <span class="terminal-output">{line.slice(1).trim()}</span>
+          <span class="terminal__output">{line.slice(1).trim()}</span>
         ) : (
           <>
-            <span class="terminal-prompt">{prompt}</span>
-            <span class="terminal-cmd">{line}</span>
+            <span class="terminal__prompt">{prompt}</span>
+            <span class="terminal__cmd">{line}</span>
           </>
         )}
       </div>
     ))}
-    <div class="terminal-line">
-      <span class="terminal-prompt">{prompt}</span>
-      <span class="terminal-cursor"></span>
+    <div class="terminal__line flex items-baseline gap-2">
+      <span class="terminal__prompt">{prompt}</span>
+      <span class="terminal__cursor"></span>
     </div>
   </div>
 </div>
@@ -53,21 +53,12 @@ const {
     overflow: hidden;
   }
 
-  .terminal-header {
+  .terminal__header {
     background: var(--color-surface-low);
     border-bottom: 1px solid rgba(214, 82, 76, 0.15);
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
   }
 
-  .terminal-dots {
-    display: flex;
-    gap: 5px;
-  }
-
-  .dot {
+  .terminal__dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -75,26 +66,22 @@ const {
     box-shadow: 0 0 6px rgba(214, 82, 76, 0.3);
   }
 
-  .dot:first-child { background: rgba(214, 82, 76, 0.7); box-shadow: 0 0 8px rgba(214, 82, 76, 0.6); }
+  .terminal__dot--active {
+    background: rgba(214, 82, 76, 0.7);
+    box-shadow: 0 0 8px rgba(214, 82, 76, 0.6);
+  }
 
-  .terminal-title {
+  .terminal__title {
     font-family: var(--font-label);
     font-size: 0.6rem;
     font-weight: 600;
     letter-spacing: 0.3em;
     color: var(--color-fg-dim);
-    text-transform: uppercase;
-    flex: 1;
-    text-align: center;
   }
 
-  .terminal-body {
+  .terminal__body {
     padding: 1.25rem 1.5rem;
-    display: flex;
-    flex-direction: column;
     gap: 0.35rem;
-    min-height: 200px;
-    /* CRT scanline overlay */
     background-image: repeating-linear-gradient(
       to bottom,
       transparent 0px,
@@ -104,32 +91,29 @@ const {
     );
   }
 
-  .terminal-line {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
+  .terminal__line {
     line-height: 1.6;
   }
 
-  .terminal-prompt {
+  .terminal__prompt {
     color: var(--color-accent);
     text-shadow: 0 0 8px rgba(214, 82, 76, 0.6);
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  .terminal-cmd {
+  .terminal__cmd {
     color: var(--color-fg);
     text-shadow: 0 0 6px rgba(220, 220, 220, 0.15);
   }
 
-  .terminal-output {
+  .terminal__output {
     color: var(--color-fg-dim);
     padding-left: 0.25rem;
     font-style: italic;
   }
 
-  .terminal-cursor {
+  .terminal__cursor {
     display: inline-block;
     width: 8px;
     height: 1rem;

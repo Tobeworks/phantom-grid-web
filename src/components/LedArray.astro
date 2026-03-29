@@ -9,18 +9,17 @@ const pattern = [
 ].flat();
 ---
 
-<div class="led-array" id="ledArray">
+<div class="led-array grid grid-cols-8 gap-2.5 mb-16" id="ledArray">
   {pattern.map(state => (
-    <div class={`led${state ? ' on' : ''}`} />
+    <div class={`led-array__dot${state ? ' led-array__dot--on' : ''}`} />
   ))}
 </div>
 
 <script>
-  // Subtle flicker — individual active LEDs pulse randomly
   const grid = document.getElementById('ledArray');
   if (grid) {
     setInterval(() => {
-      const leds = grid.querySelectorAll<HTMLElement>('.led.on');
+      const leds = grid.querySelectorAll<HTMLElement>('.led-array__dot--on');
       const target = leds[Math.floor(Math.random() * leds.length)];
       if (target) {
         target.style.opacity = '0.4';
@@ -31,22 +30,16 @@ const pattern = [
 </script>
 
 <style>
-  .led-array {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 10px;
-    margin-bottom: 4rem;
-  }
-
-  .led {
-    width: 20px; height: 20px;
+  .led-array__dot {
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 1.5px solid var(--color-accent);
     opacity: 0.18;
     transition: opacity 0.3s step-end, box-shadow 0.3s step-end;
   }
 
-  .led.on {
+  .led-array__dot--on {
     opacity: 1;
     box-shadow: 0 0 8px rgba(214, 82, 76, 0.7);
   }
