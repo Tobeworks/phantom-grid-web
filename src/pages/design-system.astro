@@ -1,0 +1,494 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="PHANTOM GRID — Design System">
+  <div class="ds-page">
+
+    <header class="ds-header">
+      <span class="ds-label">PHANTOM GRID</span>
+      <h1 class="ds-title">Design System</h1>
+      <p class="ds-sub">Visual language reference — all components, tokens, and effects.</p>
+    </header>
+
+    <!-- ── COLORS ──────────────────────────────────────────────── -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Colors</h2>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Accent</h3>
+        <div class="ds-swatches">
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#CC2222;"></div>
+            <code>--color-accent</code>
+            <span>#CC2222</span>
+            <span class="ds-swatch-name">Dirty Red</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#690005;"></div>
+            <code>--color-accent-deep</code>
+            <span>#690005</span>
+            <span class="ds-swatch-name">Deep Red</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:rgba(204,34,34,0.5);"></div>
+            <code>--color-accent-glow</code>
+            <span>rgba(204,34,34,0.5)</span>
+            <span class="ds-swatch-name">Glow</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:rgba(204,34,34,0.18);"></div>
+            <code>--color-accent-dim</code>
+            <span>rgba(204,34,34,0.18)</span>
+            <span class="ds-swatch-name">Dim</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Surfaces</h3>
+        <div class="ds-swatches">
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#0E0E0E; border:1px solid #333;"></div>
+            <code>--color-bg</code>
+            <span>#0E0E0E</span>
+            <span class="ds-swatch-name">Background</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#141414; border:1px solid #333;"></div>
+            <code>--color-surface-low</code>
+            <span>#141414</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#1A1A1A; border:1px solid #333;"></div>
+            <code>--color-surface</code>
+            <span>#1A1A1A</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#222222; border:1px solid #333;"></div>
+            <code>--color-surface-high</code>
+            <span>#222222</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Foreground</h3>
+        <div class="ds-swatches">
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#DCDCDC;"></div>
+            <code>--color-fg</code>
+            <span>#DCDCDC</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:rgba(220,220,220,0.4);"></div>
+            <code>--color-fg-dim</code>
+            <span>rgba(220,220,220,0.4)</span>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:rgba(220,220,220,0.2);"></div>
+            <code>--color-fg-muted</code>
+            <span>rgba(220,220,220,0.2)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TYPOGRAPHY ───────────────────────────────────────────── -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Typography</h2>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Barlow Condensed — Label Font</h3>
+        <div class="ds-type-scale">
+          <div class="ds-type-row">
+            <span class="ds-type-meta">Hero / 700 / 4rem / tracking 0.3em</span>
+            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:4rem; letter-spacing:0.3em; text-transform:uppercase;">PHANTOM GRID</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-meta">Display / 700 / 2.5rem / tracking 0.25em</span>
+            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:2.5rem; letter-spacing:0.25em; text-transform:uppercase;">VECTOR FIELD SIGNALS</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-meta">Headline / 700 / 1.5rem / tracking 0.2em</span>
+            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.5rem; letter-spacing:0.2em; text-transform:uppercase;">INPUT NULL — EP</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-meta">Label / 600 / 0.875rem / tracking 0.4em</span>
+            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.875rem; letter-spacing:0.4em; text-transform:uppercase;">CATALOG · PG-001</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-meta">Micro / 600 / 0.65rem / tracking 0.2em</span>
+            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;">EST. 2026 — CYBERSPACE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Phosphor Glow — Accent Text</h3>
+        <div class="ds-type-row">
+          <span style="
+            font-family:'Barlow Condensed',sans-serif;
+            font-weight:700;
+            font-size:3rem;
+            letter-spacing:0.25em;
+            text-transform:uppercase;
+            color:#DCDCDC;
+            text-shadow:
+              2px 0 rgba(204,34,34,0.6),
+              -2px 0 rgba(0,200,255,0.25),
+              0 0 20px rgba(220,220,220,0.12),
+              0 0 60px rgba(220,220,220,0.04);
+          ">PHANTOM GRID</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EFFECTS ───────────────────────────────────────────────── -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Visual Effects</h2>
+
+      <div class="ds-effects-grid">
+        <div class="ds-effect-card">
+          <div class="ds-effect-label">Neon Bloom — Accent</div>
+          <div class="ds-effect-demo" style="color:#CC2222; text-shadow: 0 0 10px rgba(204,34,34,0.7), 0 0 30px rgba(204,34,34,0.3);">
+            SIGNAL
+          </div>
+          <code>text-shadow: 0 0 10px rgba(204,34,34,0.7)</code>
+        </div>
+
+        <div class="ds-effect-card">
+          <div class="ds-effect-label">Phosphor Glow — Foreground</div>
+          <div class="ds-effect-demo" style="text-shadow: 2px 0 rgba(204,34,34,0.6), -2px 0 rgba(0,200,255,0.25), 0 0 20px rgba(220,220,220,0.12);">
+            TRANSMISSION
+          </div>
+          <code>Chromatic aberration + bloom</code>
+        </div>
+
+        <div class="ds-effect-card">
+          <div class="ds-effect-label">Box Glow — Surface</div>
+          <div class="ds-effect-demo">
+            <div style="display:inline-block; padding:0.5rem 1rem; border:1px solid rgba(204,34,34,0.3); box-shadow: 0 0 15px rgba(204,34,34,0.2), inset 0 0 10px rgba(204,34,34,0.05);">
+              PG-001
+            </div>
+          </div>
+          <code>box-shadow: 0 0 15px rgba(204,34,34,0.2)</code>
+        </div>
+
+        <div class="ds-effect-card">
+          <div class="ds-effect-label">Cursor Blink</div>
+          <div class="ds-effect-demo">
+            READY <span class="ds-cursor"></span>
+          </div>
+          <code>step-end infinite, 1.2s</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COMPONENTS ───────────────────────────────────────────── -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Components</h2>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Buttons</h3>
+        <div class="ds-component-row">
+          <button class="btn-primary">RELEASE NOW</button>
+          <button class="btn-ghost">VIEW CATALOG</button>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Badges</h3>
+        <div class="ds-component-row">
+          <span class="ds-badge">PG-001</span>
+          <span class="ds-badge">EP</span>
+          <span class="ds-badge">IN PRODUCTION</span>
+          <span class="ds-badge ds-badge-muted">PENDING</span>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Input</h3>
+        <input class="ds-input" placeholder="SEARCH CATALOG_" />
+      </div>
+
+      <div class="ds-group">
+        <h3 class="ds-group-title">Divider</h3>
+        <div class="ds-divider"></div>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .ds-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem 8rem;
+    overflow-y: auto;
+    height: 100vh;
+    font-family: var(--font-label);
+    color: var(--color-fg);
+  }
+
+  .ds-header {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2rem;
+  }
+
+  .ds-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(204,34,34,0.5);
+  }
+
+  .ds-title {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .ds-sub {
+    font-size: 0.875rem;
+    color: var(--color-fg-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .ds-section {
+    margin-bottom: 4rem;
+  }
+
+  .ds-section-title {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    text-shadow: 0 0 10px rgba(204,34,34,0.4);
+  }
+
+  .ds-group {
+    margin-bottom: 2.5rem;
+  }
+
+  .ds-group-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    margin-bottom: 1rem;
+  }
+
+  /* ── Swatches ── */
+  .ds-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .ds-swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: var(--color-fg-dim);
+    min-width: 140px;
+  }
+
+  .ds-swatch-color {
+    width: 100%;
+    height: 56px;
+    border-radius: 2px;
+    margin-bottom: 0.25rem;
+  }
+
+  .ds-swatch code {
+    color: var(--color-fg);
+    font-size: 0.6rem;
+  }
+
+  .ds-swatch-name {
+    color: var(--color-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Type Scale ── */
+  .ds-type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ds-type-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ds-type-meta {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+  }
+
+  /* ── Effects ── */
+  .ds-effects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .ds-effect-card {
+    background: var(--color-surface-low);
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ds-effect-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  .ds-effect-demo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .ds-effect-card code {
+    font-size: 0.6rem;
+    color: var(--color-fg-muted);
+    letter-spacing: 0.05em;
+    font-family: monospace;
+  }
+
+  /* ── Cursor ── */
+  .ds-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2rem;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px rgba(204,34,34,0.7);
+    animation: blink 1.2s step-end infinite;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ── Components ── */
+  .ds-component-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-accent-deep);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 15px var(--color-accent);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid rgba(204,34,34,0.3);
+    padding: 0.6rem 1.5rem;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(204,34,34,0.1);
+    box-shadow: 0 0 15px rgba(204,34,34,0.2);
+  }
+
+  .ds-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    border: 1px solid rgba(204,34,34,0.4);
+    padding: 0.2rem 0.6rem;
+  }
+
+  .ds-badge-muted {
+    color: var(--color-fg-dim);
+    border-color: var(--color-border);
+  }
+
+  .ds-input {
+    background: var(--color-bg);
+    border: none;
+    border-bottom: 1px solid var(--color-accent);
+    color: var(--color-fg);
+    font-family: var(--font-label);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    padding: 0.5rem 0;
+    width: 320px;
+    outline: none;
+    text-transform: uppercase;
+  }
+
+  .ds-input::placeholder {
+    color: var(--color-fg-muted);
+  }
+
+  .ds-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+  }
+</style>
