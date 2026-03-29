@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Terminal from '../components/Terminal.astro';
+import LedArray from '../components/LedArray.astro';
 ---
 
 <BaseLayout title="PHANTOM GRID — Design System">
@@ -19,27 +21,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h3 class="ds-group-title">Accent</h3>
         <div class="ds-swatches">
           <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#CC2222;"></div>
+            <div class="ds-swatch-color" style="background:#D6524C;"></div>
             <code>--color-accent</code>
-            <span>#CC2222</span>
+            <span>#D6524C</span>
             <span class="ds-swatch-name">Dirty Red</span>
           </div>
           <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#690005;"></div>
+            <div class="ds-swatch-color" style="background:#7A1A17;"></div>
             <code>--color-accent-deep</code>
-            <span>#690005</span>
+            <span>#7A1A17</span>
             <span class="ds-swatch-name">Deep Red</span>
           </div>
           <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:rgba(204,34,34,0.5);"></div>
+            <div class="ds-swatch-color" style="background:rgba(214,82,76,0.5);"></div>
             <code>--color-accent-glow</code>
-            <span>rgba(204,34,34,0.5)</span>
+            <span>rgba(214,82,76,0.5)</span>
             <span class="ds-swatch-name">Glow</span>
           </div>
           <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:rgba(204,34,34,0.18);"></div>
+            <div class="ds-swatch-color" style="background:rgba(214,82,76,0.18);"></div>
             <code>--color-accent-dim</code>
-            <span>rgba(204,34,34,0.18)</span>
+            <span>rgba(214,82,76,0.18)</span>
             <span class="ds-swatch-name">Dim</span>
           </div>
         </div>
@@ -135,7 +137,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             text-transform:uppercase;
             color:#DCDCDC;
             text-shadow:
-              2px 0 rgba(204,34,34,0.6),
+              2px 0 rgba(214,82,76,0.6),
               -2px 0 rgba(0,200,255,0.25),
               0 0 20px rgba(220,220,220,0.12),
               0 0 60px rgba(220,220,220,0.04);
@@ -151,15 +153,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="ds-effects-grid">
         <div class="ds-effect-card">
           <div class="ds-effect-label">Neon Bloom — Accent</div>
-          <div class="ds-effect-demo" style="color:#CC2222; text-shadow: 0 0 10px rgba(204,34,34,0.7), 0 0 30px rgba(204,34,34,0.3);">
+          <div class="ds-effect-demo" style="color:#D6524C; text-shadow: 0 0 10px rgba(214,82,76,0.7), 0 0 30px rgba(214,82,76,0.3);">
             SIGNAL
           </div>
-          <code>text-shadow: 0 0 10px rgba(204,34,34,0.7)</code>
+          <code>text-shadow: 0 0 10px rgba(214,82,76,0.7)</code>
         </div>
 
         <div class="ds-effect-card">
           <div class="ds-effect-label">Phosphor Glow — Foreground</div>
-          <div class="ds-effect-demo" style="text-shadow: 2px 0 rgba(204,34,34,0.6), -2px 0 rgba(0,200,255,0.25), 0 0 20px rgba(220,220,220,0.12);">
+          <div class="ds-effect-demo" style="text-shadow: 2px 0 rgba(214,82,76,0.6), -2px 0 rgba(0,200,255,0.25), 0 0 20px rgba(220,220,220,0.12);">
             TRANSMISSION
           </div>
           <code>Chromatic aberration + bloom</code>
@@ -168,11 +170,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="ds-effect-card">
           <div class="ds-effect-label">Box Glow — Surface</div>
           <div class="ds-effect-demo">
-            <div style="display:inline-block; padding:0.5rem 1rem; border:1px solid rgba(204,34,34,0.3); box-shadow: 0 0 15px rgba(204,34,34,0.2), inset 0 0 10px rgba(204,34,34,0.05);">
+            <div style="display:inline-block; padding:0.5rem 1rem; border:1px solid rgba(214,82,76,0.3); box-shadow: 0 0 15px rgba(214,82,76,0.2), inset 0 0 10px rgba(214,82,76,0.05);">
               PG-001
             </div>
           </div>
-          <code>box-shadow: 0 0 15px rgba(204,34,34,0.2)</code>
+          <code>box-shadow: 0 0 15px rgba(214,82,76,0.2)</code>
         </div>
 
         <div class="ds-effect-card">
@@ -183,6 +185,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <code>step-end infinite, 1.2s</code>
         </div>
       </div>
+    </section>
+
+    <!-- ── LED ARRAY ────────────────────────────────────────────── -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">LED Array</h2>
+      <p class="ds-sub">PG-001 catalog number encoded as on/off states — 5 rows × 8 cols. Active LEDs pulse individually via JS interval.</p>
+      <div style="display: flex; justify-content: center; padding: 2rem 0;">
+        <LedArray />
+      </div>
+    </section>
+
+    <!-- ── TERMINAL ────────────────────────────────────────────── -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Terminal</h2>
+      <Terminal
+        title="PHANTOM_GRID_OS"
+        lines={[
+          'git submodule update --remote',
+          '> Submodule path: phantom-grid-os',
+          '> HEAD is now at 42abae4',
+          'pnpm build',
+          '> ✓ 2 page(s) built in 940ms',
+          'git commit -m "feat: PG-001 release"',
+          '> [main a91dc6b] feat: PG-001 release',
+        ]}
+      />
     </section>
 
     <!-- ── COMPONENTS ───────────────────────────────────────────── -->
@@ -245,7 +273,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-transform: uppercase;
     display: block;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(204,34,34,0.5);
+    text-shadow: 0 0 10px rgba(214,82,76,0.5);
   }
 
   .ds-title {
@@ -275,7 +303,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 2rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-border);
-    text-shadow: 0 0 10px rgba(204,34,34,0.4);
+    text-shadow: 0 0 10px rgba(214,82,76,0.4);
   }
 
   .ds-group {
@@ -395,7 +423,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 8px;
     height: 1.2rem;
     background: var(--color-accent);
-    box-shadow: 0 0 10px rgba(204,34,34,0.7);
+    box-shadow: 0 0 10px rgba(214,82,76,0.7);
     animation: blink 1.2s step-end infinite;
     vertical-align: middle;
     margin-left: 4px;
@@ -435,7 +463,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .btn-ghost {
     background: transparent;
     color: var(--color-accent);
-    border: 1px solid rgba(204,34,34,0.3);
+    border: 1px solid rgba(214,82,76,0.3);
     padding: 0.6rem 1.5rem;
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -447,8 +475,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .btn-ghost:hover {
-    background: rgba(204,34,34,0.1);
-    box-shadow: 0 0 15px rgba(204,34,34,0.2);
+    background: rgba(214,82,76,0.1);
+    box-shadow: 0 0 15px rgba(214,82,76,0.2);
   }
 
   .ds-badge {
@@ -458,7 +486,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--color-accent);
-    border: 1px solid rgba(204,34,34,0.4);
+    border: 1px solid rgba(214,82,76,0.4);
     padding: 0.2rem 0.6rem;
   }
 
