@@ -5,136 +5,136 @@ import LedArray from '../components/LedArray.astro';
 ---
 
 <BaseLayout title="PHANTOM GRID — Design System">
-  <div class="ds-page">
+  <div class="design-sys max-w-[1100px] mx-auto px-8 pt-16 pb-32 h-screen overflow-y-auto">
 
-    <header class="ds-header">
-      <span class="ds-label">PHANTOM GRID</span>
-      <h1 class="ds-title">Design System</h1>
-      <p class="ds-sub">Visual language reference — all components, tokens, and effects.</p>
+    <!-- ── Header ─────────────────────────────────────────────────── -->
+    <header class="design-sys__header mb-16 pb-8">
+      <span class="design-sys__eyebrow block mb-2 text-[0.65rem] uppercase tracking-[0.4em]">PHANTOM GRID</span>
+      <h1 class="design-sys__title text-[3rem] font-bold uppercase tracking-[0.2em] mb-2">Design System</h1>
+      <p class="design-sys__subtitle text-[0.875rem] tracking-[0.1em]">Visual language reference — all components, tokens, and effects.</p>
     </header>
 
-    <!-- ── COLORS ──────────────────────────────────────────────── -->
-    <section class="ds-section">
-      <h2 class="ds-section-title">Colors</h2>
+    <!-- ── Colors ─────────────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title">Colors</h2>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Accent</h3>
-        <div class="ds-swatches">
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#D6524C;"></div>
-            <code>--color-accent</code>
-            <span>#D6524C</span>
-            <span class="ds-swatch-name">Dirty Red</span>
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Accent</h3>
+        <div class="flex flex-wrap gap-4">
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#D6524C;"></div>
+            <code class="swatch__token">--color-accent</code>
+            <span class="swatch__hex">#D6524C</span>
+            <span class="swatch__name">Dirty Red</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#7A1A17;"></div>
-            <code>--color-accent-deep</code>
-            <span>#7A1A17</span>
-            <span class="ds-swatch-name">Deep Red</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#7A1A17;"></div>
+            <code class="swatch__token">--color-accent-deep</code>
+            <span class="swatch__hex">#7A1A17</span>
+            <span class="swatch__name">Deep Red</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:rgba(214,82,76,0.5);"></div>
-            <code>--color-accent-glow</code>
-            <span>rgba(214,82,76,0.5)</span>
-            <span class="ds-swatch-name">Glow</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(214,82,76,0.5);"></div>
+            <code class="swatch__token">--color-accent-glow</code>
+            <span class="swatch__hex">rgba(214,82,76,0.5)</span>
+            <span class="swatch__name">Glow</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:rgba(214,82,76,0.18);"></div>
-            <code>--color-accent-dim</code>
-            <span>rgba(214,82,76,0.18)</span>
-            <span class="ds-swatch-name">Dim</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(214,82,76,0.18);"></div>
+            <code class="swatch__token">--color-accent-dim</code>
+            <span class="swatch__hex">rgba(214,82,76,0.18)</span>
+            <span class="swatch__name">Dim</span>
           </div>
         </div>
       </div>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Surfaces</h3>
-        <div class="ds-swatches">
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#0E0E0E; border:1px solid #333;"></div>
-            <code>--color-bg</code>
-            <span>#0E0E0E</span>
-            <span class="ds-swatch-name">Background</span>
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Surfaces</h3>
+        <div class="flex flex-wrap gap-4">
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#0E0E0E; border:1px solid #333;"></div>
+            <code class="swatch__token">--color-bg</code>
+            <span class="swatch__hex">#0E0E0E</span>
+            <span class="swatch__name">Background</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#141414; border:1px solid #333;"></div>
-            <code>--color-surface-low</code>
-            <span>#141414</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#141414; border:1px solid #333;"></div>
+            <code class="swatch__token">--color-surface-low</code>
+            <span class="swatch__hex">#141414</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#1A1A1A; border:1px solid #333;"></div>
-            <code>--color-surface</code>
-            <span>#1A1A1A</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#1A1A1A; border:1px solid #333;"></div>
+            <code class="swatch__token">--color-surface</code>
+            <span class="swatch__hex">#1A1A1A</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#222222; border:1px solid #333;"></div>
-            <code>--color-surface-high</code>
-            <span>#222222</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#222222; border:1px solid #333;"></div>
+            <code class="swatch__token">--color-surface-high</code>
+            <span class="swatch__hex">#222222</span>
           </div>
         </div>
       </div>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Foreground</h3>
-        <div class="ds-swatches">
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:#DCDCDC;"></div>
-            <code>--color-fg</code>
-            <span>#DCDCDC</span>
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Foreground</h3>
+        <div class="flex flex-wrap gap-4">
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#DCDCDC;"></div>
+            <code class="swatch__token">--color-fg</code>
+            <span class="swatch__hex">#DCDCDC</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:rgba(220,220,220,0.4);"></div>
-            <code>--color-fg-dim</code>
-            <span>rgba(220,220,220,0.4)</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(220,220,220,0.4);"></div>
+            <code class="swatch__token">--color-fg-dim</code>
+            <span class="swatch__hex">rgba(220,220,220,0.4)</span>
           </div>
-          <div class="ds-swatch">
-            <div class="ds-swatch-color" style="background:rgba(220,220,220,0.2);"></div>
-            <code>--color-fg-muted</code>
-            <span>rgba(220,220,220,0.2)</span>
+          <div class="swatch flex flex-col gap-1 min-w-[140px]">
+            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(220,220,220,0.2);"></div>
+            <code class="swatch__token">--color-fg-muted</code>
+            <span class="swatch__hex">rgba(220,220,220,0.2)</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── TYPOGRAPHY ───────────────────────────────────────────── -->
-    <section class="ds-section">
-      <h2 class="ds-section-title">Typography</h2>
+    <!-- ── Typography ─────────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title">Typography</h2>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Barlow Condensed — Label Font</h3>
-        <div class="ds-type-scale">
-          <div class="ds-type-row">
-            <span class="ds-type-meta">Hero / 700 / 4rem / tracking 0.3em</span>
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Barlow Condensed — Label Font</h3>
+        <div class="flex flex-col gap-6">
+          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
+            <span class="type-sample__meta">Hero / 700 / 4rem / tracking 0.3em</span>
             <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:4rem; letter-spacing:0.3em; text-transform:uppercase;">PHANTOM GRID</span>
           </div>
-          <div class="ds-type-row">
-            <span class="ds-type-meta">Display / 700 / 2.5rem / tracking 0.25em</span>
+          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
+            <span class="type-sample__meta">Display / 700 / 2.5rem / tracking 0.25em</span>
             <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:2.5rem; letter-spacing:0.25em; text-transform:uppercase;">VECTOR FIELD SIGNALS</span>
           </div>
-          <div class="ds-type-row">
-            <span class="ds-type-meta">Headline / 700 / 1.5rem / tracking 0.2em</span>
+          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
+            <span class="type-sample__meta">Headline / 700 / 1.5rem / tracking 0.2em</span>
             <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.5rem; letter-spacing:0.2em; text-transform:uppercase;">INPUT NULL — EP</span>
           </div>
-          <div class="ds-type-row">
-            <span class="ds-type-meta">Label / 600 / 0.875rem / tracking 0.4em</span>
+          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
+            <span class="type-sample__meta">Label / 600 / 0.875rem / tracking 0.4em</span>
             <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.875rem; letter-spacing:0.4em; text-transform:uppercase;">CATALOG · PG-001</span>
           </div>
-          <div class="ds-type-row">
-            <span class="ds-type-meta">Micro / 600 / 0.65rem / tracking 0.2em</span>
+          <div class="type-sample flex flex-col gap-1 pb-6">
+            <span class="type-sample__meta">Micro / 600 / 0.65rem / tracking 0.2em</span>
             <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;">EST. 2026 — CYBERSPACE</span>
           </div>
         </div>
       </div>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Phosphor Glow — Accent Text</h3>
-        <div class="ds-type-row">
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Phosphor Glow — Accent Text</h3>
+        <div class="type-sample flex flex-col gap-1">
+          <span class="type-sample__meta">VHS Chromatic Aberration</span>
           <span style="
             font-family:'Barlow Condensed',sans-serif;
-            font-weight:700;
-            font-size:3rem;
-            letter-spacing:0.25em;
-            text-transform:uppercase;
+            font-weight:700; font-size:3rem;
+            letter-spacing:0.25em; text-transform:uppercase;
             color:#DCDCDC;
             text-shadow:
               2px 0 rgba(214,82,76,0.6),
@@ -146,59 +146,51 @@ import LedArray from '../components/LedArray.astro';
       </div>
     </section>
 
-    <!-- ── EFFECTS ───────────────────────────────────────────────── -->
-    <section class="ds-section">
-      <h2 class="ds-section-title">Visual Effects</h2>
+    <!-- ── Visual Effects ─────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title">Visual Effects</h2>
 
-      <div class="ds-effects-grid">
-        <div class="ds-effect-card">
-          <div class="ds-effect-label">Neon Bloom — Accent</div>
-          <div class="ds-effect-demo" style="color:#D6524C; text-shadow: 0 0 10px rgba(214,82,76,0.7), 0 0 30px rgba(214,82,76,0.3);">
-            SIGNAL
-          </div>
-          <code>text-shadow: 0 0 10px rgba(214,82,76,0.7)</code>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
+        <div class="effect-card flex flex-col gap-4 p-6">
+          <span class="effect-card__label">Neon Bloom — Accent</span>
+          <div class="effect-card__demo" style="color:#D6524C; text-shadow: 0 0 10px rgba(214,82,76,0.7), 0 0 30px rgba(214,82,76,0.3);">SIGNAL</div>
+          <code class="effect-card__code">text-shadow: 0 0 10px rgba(214,82,76,0.7)</code>
         </div>
 
-        <div class="ds-effect-card">
-          <div class="ds-effect-label">Phosphor Glow — Foreground</div>
-          <div class="ds-effect-demo" style="text-shadow: 2px 0 rgba(214,82,76,0.6), -2px 0 rgba(0,200,255,0.25), 0 0 20px rgba(220,220,220,0.12);">
-            TRANSMISSION
-          </div>
-          <code>Chromatic aberration + bloom</code>
+        <div class="effect-card flex flex-col gap-4 p-6">
+          <span class="effect-card__label">Phosphor Glow — Foreground</span>
+          <div class="effect-card__demo" style="text-shadow: 2px 0 rgba(214,82,76,0.6), -2px 0 rgba(0,200,255,0.25), 0 0 20px rgba(220,220,220,0.12);">TRANSMISSION</div>
+          <code class="effect-card__code">Chromatic aberration + bloom</code>
         </div>
 
-        <div class="ds-effect-card">
-          <div class="ds-effect-label">Box Glow — Surface</div>
-          <div class="ds-effect-demo">
-            <div style="display:inline-block; padding:0.5rem 1rem; border:1px solid rgba(214,82,76,0.3); box-shadow: 0 0 15px rgba(214,82,76,0.2), inset 0 0 10px rgba(214,82,76,0.05);">
-              PG-001
-            </div>
+        <div class="effect-card flex flex-col gap-4 p-6">
+          <span class="effect-card__label">Box Glow — Surface</span>
+          <div class="effect-card__demo">
+            <div style="padding:0.5rem 1rem; border:1px solid rgba(214,82,76,0.3); box-shadow: 0 0 15px rgba(214,82,76,0.2), inset 0 0 10px rgba(214,82,76,0.05);">PG-001</div>
           </div>
-          <code>box-shadow: 0 0 15px rgba(214,82,76,0.2)</code>
+          <code class="effect-card__code">box-shadow: 0 0 15px rgba(214,82,76,0.2)</code>
         </div>
 
-        <div class="ds-effect-card">
-          <div class="ds-effect-label">Cursor Blink</div>
-          <div class="ds-effect-demo">
-            READY <span class="ds-cursor"></span>
-          </div>
-          <code>step-end infinite, 1.2s</code>
+        <div class="effect-card flex flex-col gap-4 p-6">
+          <span class="effect-card__label">Cursor Blink</span>
+          <div class="effect-card__demo">READY <span class="pg-cursor"></span></div>
+          <code class="effect-card__code">step-end infinite, 1.2s</code>
         </div>
       </div>
     </section>
 
-    <!-- ── LED ARRAY ────────────────────────────────────────────── -->
-    <section class="ds-section">
-      <h2 class="ds-section-title">LED Array</h2>
-      <p class="ds-sub">PG-001 catalog number encoded as on/off states — 5 rows × 8 cols. Active LEDs pulse individually via JS interval.</p>
-      <div style="display: flex; justify-content: center; padding: 2rem 0;">
+    <!-- ── LED Array ──────────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title">LED Array</h2>
+      <p class="design-sys__subtitle mb-8">PG-001 catalog number encoded as on/off states — 5 rows × 8 cols. Active LEDs flicker via JS interval.</p>
+      <div class="flex justify-center py-8">
         <LedArray />
       </div>
     </section>
 
-    <!-- ── TERMINAL ────────────────────────────────────────────── -->
-    <section class="ds-section">
-      <h2 class="ds-section-title">Terminal</h2>
+    <!-- ── Terminal ───────────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title">Terminal</h2>
       <Terminal
         title="PHANTOM_GRID_OS"
         lines={[
@@ -213,36 +205,36 @@ import LedArray from '../components/LedArray.astro';
       />
     </section>
 
-    <!-- ── COMPONENTS ───────────────────────────────────────────── -->
-    <section class="ds-section">
-      <h2 class="ds-section-title">Components</h2>
+    <!-- ── Components ─────────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title">Components</h2>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Buttons</h3>
-        <div class="ds-component-row">
-          <button class="btn-primary">RELEASE NOW</button>
-          <button class="btn-ghost">VIEW CATALOG</button>
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Buttons</h3>
+        <div class="flex flex-wrap gap-4 items-center">
+          <button class="btn btn--primary">RELEASE NOW</button>
+          <button class="btn btn--ghost">VIEW CATALOG</button>
         </div>
       </div>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Badges</h3>
-        <div class="ds-component-row">
-          <span class="ds-badge">PG-001</span>
-          <span class="ds-badge">EP</span>
-          <span class="ds-badge">IN PRODUCTION</span>
-          <span class="ds-badge ds-badge-muted">PENDING</span>
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Badges</h3>
+        <div class="flex flex-wrap gap-4 items-center">
+          <span class="badge">PG-001</span>
+          <span class="badge">EP</span>
+          <span class="badge">IN PRODUCTION</span>
+          <span class="badge badge--muted">PENDING</span>
         </div>
       </div>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Input</h3>
-        <input class="ds-input" placeholder="SEARCH CATALOG_" />
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Input</h3>
+        <input class="pg-input" placeholder="SEARCH CATALOG_" />
       </div>
 
-      <div class="ds-group">
-        <h3 class="ds-group-title">Divider</h3>
-        <div class="ds-divider"></div>
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title">Divider</h3>
+        <div class="pg-divider"></div>
       </div>
     </section>
 
@@ -250,51 +242,31 @@ import LedArray from '../components/LedArray.astro';
 </BaseLayout>
 
 <style>
-  .ds-page {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 4rem 2rem 8rem;
-    overflow-y: auto;
-    height: 100vh;
+  /* ── Page block ── */
+  .design-sys {
     font-family: var(--font-label);
     color: var(--color-fg);
   }
 
-  .ds-header {
-    margin-bottom: 4rem;
+  .design-sys__header {
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: 2rem;
   }
 
-  .ds-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
+  .design-sys__eyebrow {
     color: var(--color-accent);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(214,82,76,0.5);
+    text-shadow: 0 0 10px rgba(214, 82, 76, 0.5);
   }
 
-  .ds-title {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+  .design-sys__title {
+    color: var(--color-fg);
   }
 
-  .ds-sub {
-    font-size: 0.875rem;
+  .design-sys__subtitle {
     color: var(--color-fg-dim);
     letter-spacing: 0.1em;
   }
 
-  .ds-section {
-    margin-bottom: 4rem;
-  }
-
-  .ds-section-title {
+  .design-sys__section-title {
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.4em;
@@ -303,14 +275,10 @@ import LedArray from '../components/LedArray.astro';
     margin-bottom: 2rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-border);
-    text-shadow: 0 0 10px rgba(214,82,76,0.4);
+    text-shadow: 0 0 10px rgba(214, 82, 76, 0.4);
   }
 
-  .ds-group {
-    margin-bottom: 2.5rem;
-  }
-
-  .ds-group-title {
+  .design-sys__group-title {
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.3em;
@@ -319,87 +287,50 @@ import LedArray from '../components/LedArray.astro';
     margin-bottom: 1rem;
   }
 
-  /* ── Swatches ── */
-  .ds-swatches {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .ds-swatch {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  /* ── Swatch block ── */
+  .swatch {
     font-size: 0.65rem;
     letter-spacing: 0.05em;
     color: var(--color-fg-dim);
-    min-width: 140px;
   }
 
-  .ds-swatch-color {
-    width: 100%;
-    height: 56px;
-    border-radius: 2px;
-    margin-bottom: 0.25rem;
-  }
-
-  .ds-swatch code {
+  .swatch__token {
     color: var(--color-fg);
     font-size: 0.6rem;
   }
 
-  .ds-swatch-name {
+  .swatch__hex {
+    font-size: 0.6rem;
+  }
+
+  .swatch__name {
     color: var(--color-accent);
     font-size: 0.6rem;
     letter-spacing: 0.1em;
   }
 
-  /* ── Type Scale ── */
-  .ds-type-scale {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .ds-type-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .ds-type-meta {
+  /* ── Type sample block ── */
+  .type-sample__meta {
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     color: var(--color-fg-muted);
     text-transform: uppercase;
   }
 
-  /* ── Effects ── */
-  .ds-effects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1rem;
-  }
-
-  .ds-effect-card {
+  /* ── Effect card block ── */
+  .effect-card {
     background: var(--color-surface-low);
     border: 1px solid var(--color-border);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 
-  .ds-effect-label {
+  .effect-card__label {
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-fg-dim);
   }
 
-  .ds-effect-demo {
+  .effect-card__demo {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -410,20 +341,20 @@ import LedArray from '../components/LedArray.astro';
     align-items: center;
   }
 
-  .ds-effect-card code {
+  .effect-card__code {
     font-size: 0.6rem;
     color: var(--color-fg-muted);
     letter-spacing: 0.05em;
     font-family: monospace;
   }
 
-  /* ── Cursor ── */
-  .ds-cursor {
+  /* ── Cursor (reusable) ── */
+  .pg-cursor {
     display: inline-block;
     width: 8px;
     height: 1.2rem;
     background: var(--color-accent);
-    box-shadow: 0 0 10px rgba(214,82,76,0.7);
+    box-shadow: 0 0 10px rgba(214, 82, 76, 0.7);
     animation: blink 1.2s step-end infinite;
     vertical-align: middle;
     margin-left: 4px;
@@ -434,68 +365,59 @@ import LedArray from '../components/LedArray.astro';
     50%       { opacity: 0; }
   }
 
-  /* ── Components ── */
-  .ds-component-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
+  /* ── Button block ── */
+  .btn {
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
   }
 
-  .btn-primary {
+  .btn--primary {
     background: var(--color-accent);
     color: var(--color-accent-deep);
     border: none;
-    padding: 0.6rem 1.5rem;
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    cursor: pointer;
     transition: box-shadow 0.15s;
   }
 
-  .btn-primary:hover {
+  .btn--primary:hover {
     box-shadow: 0 0 15px var(--color-accent);
   }
 
-  .btn-ghost {
+  .btn--ghost {
     background: transparent;
     color: var(--color-accent);
-    border: 1px solid rgba(214,82,76,0.3);
-    padding: 0.6rem 1.5rem;
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    cursor: pointer;
+    border: 1px solid rgba(214, 82, 76, 0.3);
     transition: background 0.15s, box-shadow 0.15s;
   }
 
-  .btn-ghost:hover {
-    background: rgba(214,82,76,0.1);
-    box-shadow: 0 0 15px rgba(214,82,76,0.2);
+  .btn--ghost:hover {
+    background: rgba(214, 82, 76, 0.1);
+    box-shadow: 0 0 15px rgba(214, 82, 76, 0.2);
   }
 
-  .ds-badge {
+  /* ── Badge block ── */
+  .badge {
     display: inline-block;
     font-size: 0.6rem;
     font-weight: 600;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--color-accent);
-    border: 1px solid rgba(214,82,76,0.4);
+    border: 1px solid rgba(214, 82, 76, 0.4);
     padding: 0.2rem 0.6rem;
   }
 
-  .ds-badge-muted {
+  .badge--muted {
     color: var(--color-fg-dim);
     border-color: var(--color-border);
   }
 
-  .ds-input {
+  /* ── Input (reusable) ── */
+  .pg-input {
     background: var(--color-bg);
     border: none;
     border-bottom: 1px solid var(--color-accent);
@@ -510,11 +432,12 @@ import LedArray from '../components/LedArray.astro';
     text-transform: uppercase;
   }
 
-  .ds-input::placeholder {
+  .pg-input::placeholder {
     color: var(--color-fg-muted);
   }
 
-  .ds-divider {
+  /* ── Divider (reusable) ── */
+  .pg-divider {
     width: 100%;
     height: 1px;
     background: var(--color-border);
