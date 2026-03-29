@@ -1,42 +1,55 @@
 ---
 // Pattern: PG-001 catalog number encoded as on/off states (5 rows × 8 cols)
 const pattern = [
-  [1,1,0,1,0,0,1,0],
-  [1,0,1,1,0,1,1,0],
-  [1,0,0,1,0,1,0,1],
-  [0,1,1,0,1,0,0,1],
-  [0,1,0,0,1,1,0,1],
+  [1, 1, 0, 1, 0, 0, 1, 0],
+  [1, 0, 1, 1, 0, 1, 1, 0],
+  [1, 0, 0, 1, 0, 1, 0, 1],
+  [0, 1, 1, 0, 1, 0, 0, 1],
+  [0, 1, 0, 0, 1, 1, 0, 1],
 ].flat();
 ---
 
-<div class="led-array grid grid-cols-8 gap-2.5 mb-16" id="ledArray">
-  {pattern.map(state => (
-    <div class={`led-array__dot${state ? ' led-array__dot--on' : ''}`} />
-  ))}
-</div>
+
+  <div class="led-array" id="ledArray">
+    {
+      pattern.map((state) => (
+        <div class={`led-array__dot${state ? " led-array__dot--on" : ""}`} />
+      ))
+    }
+  </div>
 
 <script>
-  const grid = document.getElementById('ledArray');
+  const grid = document.getElementById("ledArray");
   if (grid) {
     setInterval(() => {
-      const leds = grid.querySelectorAll<HTMLElement>('.led-array__dot--on');
+      const leds = grid.querySelectorAll<HTMLElement>(".led-array__dot--on");
       const target = leds[Math.floor(Math.random() * leds.length)];
       if (target) {
-        target.style.opacity = '0.4';
-        setTimeout(() => { target.style.opacity = ''; }, 300);
+        target.style.opacity = "0.4";
+        setTimeout(() => {
+          target.style.opacity = "";
+        }, 300);
       }
     }, 800);
   }
 </script>
 
 <style>
+  .led-array {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+  }
+
   .led-array__dot {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     border: 1.5px solid var(--color-accent);
     opacity: 0.18;
-    transition: opacity 0.3s step-end, box-shadow 0.3s step-end;
+    transition:
+      opacity 0.3s step-end,
+      box-shadow 0.3s step-end;
   }
 
   .led-array__dot--on {

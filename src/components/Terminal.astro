@@ -13,17 +13,17 @@ const {
 ---
 
 <div class="terminal">
-  <div class="terminal__header flex items-center gap-3 px-4 py-2">
-    <div class="terminal__dots flex gap-1.5">
+  <div class="terminal__header">
+    <div class="terminal__dots">
       <span class="terminal__dot terminal__dot--active"></span>
       <span class="terminal__dot"></span>
       <span class="terminal__dot"></span>
     </div>
-    <span class="terminal__title flex-1 text-center uppercase">{title}</span>
+    <span class="terminal__title">{title}</span>
   </div>
-  <div class="terminal__body flex flex-col min-h-52">
+  <div class="terminal__body">
     {lines.map((line) => (
-      <div class="terminal__line flex items-baseline gap-2">
+      <div class="terminal__line">
         {line.startsWith('>') ? (
           <span class="terminal__output">{line.slice(1).trim()}</span>
         ) : (
@@ -34,7 +34,7 @@ const {
         )}
       </div>
     ))}
-    <div class="terminal__line flex items-baseline gap-2">
+    <div class="terminal__line">
       <span class="terminal__prompt">{prompt}</span>
       <span class="terminal__cursor"></span>
     </div>
@@ -56,6 +56,15 @@ const {
   .terminal__header {
     background: var(--color-surface-low);
     border-bottom: 1px solid rgba(214, 82, 76, 0.15);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .terminal__dots {
+    display: flex;
+    gap: 5px;
   }
 
   .terminal__dot {
@@ -77,11 +86,17 @@ const {
     font-weight: 600;
     letter-spacing: 0.3em;
     color: var(--color-fg-dim);
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
   }
 
   .terminal__body {
     padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
     gap: 0.35rem;
+    min-height: 200px;
     background-image: repeating-linear-gradient(
       to bottom,
       transparent 0px,
@@ -92,6 +107,9 @@ const {
   }
 
   .terminal__line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
     line-height: 1.6;
   }
 

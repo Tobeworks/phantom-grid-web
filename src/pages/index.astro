@@ -6,7 +6,9 @@ import pkg from "../../package.json";
 
 <BaseLayout>
   <div class="flex flex-col items-center justify-center min-h-screen p-8">
-    <LedArray />
+    <div class="home__led-wrapper">
+      <LedArray />
+    </div>
 
     <h1 class="home__wordmark">Phantom Grid</h1>
     <p class="home__tagline">Transmitting from Cyberspace_</p>
@@ -41,6 +43,11 @@ import pkg from "../../package.json";
 </BaseLayout>
 
 <style>
+  /* ── LED wrapper ── */
+  .home__led-wrapper {
+    margin-bottom: 4rem;
+  }
+
   /* ── Wordmark ── */
   .home__wordmark {
     font-size: clamp(2.5rem, 8vw, 5rem);

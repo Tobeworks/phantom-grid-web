@@ -5,7 +5,7 @@ import LedArray from '../components/LedArray.astro';
 ---
 
 <BaseLayout title="PHANTOM GRID — Design System">
-  <div class="design-sys max-w-[1100px] mx-auto px-8 pt-16 pb-32 h-screen overflow-y-auto">
+  <div class="design-sys">
 
     <!-- ── Header ─────────────────────────────────────────────────── -->
     <header class="design-sys__header mb-16 pb-8">
@@ -183,7 +183,7 @@ import LedArray from '../components/LedArray.astro';
     <section class="design-sys__section mb-16">
       <h2 class="design-sys__section-title">LED Array</h2>
       <p class="design-sys__subtitle mb-8">PG-001 catalog number encoded as on/off states — 5 rows × 8 cols. Active LEDs flicker via JS interval.</p>
-      <div class="flex justify-center py-8">
+      <div class="design-sys__led-wrapper">
         <LedArray />
       </div>
     </section>
@@ -244,6 +244,11 @@ import LedArray from '../components/LedArray.astro';
 <style>
   /* ── Page block ── */
   .design-sys {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem 8rem;
+    height: 100vh;
+    overflow-y: auto;
     font-family: var(--font-label);
     color: var(--color-fg);
   }
@@ -259,6 +264,12 @@ import LedArray from '../components/LedArray.astro';
 
   .design-sys__title {
     color: var(--color-fg);
+  }
+
+  .design-sys__led-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
   }
 
   .design-sys__subtitle {
