@@ -1,0 +1,146 @@
+---
+interface Props {
+  lines?: string[];
+  prompt?: string;
+  title?: string;
+}
+
+const {
+  lines = [],
+  prompt = 'PHANTOM_GRID:~$',
+  title = 'TERMINAL',
+} = Astro.props;
+---
+
+<div class="terminal">
+  <div class="terminal-header">
+    <div class="terminal-dots">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <span class="terminal-title">{title}</span>
+  </div>
+  <div class="terminal-body">
+    {lines.map((line) => (
+      <div class="terminal-line">
+        {line.startsWith('>') ? (
+          <span class="terminal-output">{line.slice(1).trim()}</span>
+        ) : (
+          <>
+            <span class="terminal-prompt">{prompt}</span>
+            <span class="terminal-cmd">{line}</span>
+          </>
+        )}
+      </div>
+    ))}
+    <div class="terminal-line">
+      <span class="terminal-prompt">{prompt}</span>
+      <span class="terminal-cursor"></span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .terminal {
+    background: var(--color-bg);
+    border: 1px solid rgba(214, 82, 76, 0.25);
+    box-shadow:
+      0 0 30px rgba(214, 82, 76, 0.08),
+      inset 0 0 60px rgba(0, 0, 0, 0.4);
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-size: 0.8rem;
+    overflow: hidden;
+  }
+
+  .terminal-header {
+    background: var(--color-surface-low);
+    border-bottom: 1px solid rgba(214, 82, 76, 0.15);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 5px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(214, 82, 76, 0.3);
+    box-shadow: 0 0 6px rgba(214, 82, 76, 0.3);
+  }
+
+  .dot:first-child { background: rgba(214, 82, 76, 0.7); box-shadow: 0 0 8px rgba(214, 82, 76, 0.6); }
+
+  .terminal-title {
+    font-family: var(--font-label);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--color-fg-dim);
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
+  }
+
+  .terminal-body {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-height: 200px;
+    /* CRT scanline overlay */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+  }
+
+  .terminal-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .terminal-prompt {
+    color: var(--color-accent);
+    text-shadow: 0 0 8px rgba(214, 82, 76, 0.6);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .terminal-cmd {
+    color: var(--color-fg);
+    text-shadow: 0 0 6px rgba(220, 220, 220, 0.15);
+  }
+
+  .terminal-output {
+    color: var(--color-fg-dim);
+    padding-left: 0.25rem;
+    font-style: italic;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1rem;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px rgba(214, 82, 76, 0.8);
+    animation: blink 1.2s step-end infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>

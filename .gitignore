@@ -8,10 +8,12 @@ dist/
 __MACOSX/
 .AppleDouble
 .LSOverride
-Icon[]
+Icon[
+]
 
 # Thumbnails
 ._*
+.claude
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100

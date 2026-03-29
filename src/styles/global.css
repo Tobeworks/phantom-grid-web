@@ -2,10 +2,10 @@
 
 @theme {
   /* ── Colors ── */
-  --color-accent:        #CC2222;
-  --color-accent-dim:    rgba(204, 34, 34, 0.18);
-  --color-accent-glow:   rgba(204, 34, 34, 0.5);
-  --color-accent-deep:   #690005;
+  --color-accent:        #D6524C;
+  --color-accent-dim:    rgba(214, 82, 76, 0.18);
+  --color-accent-glow:   rgba(214, 82, 76, 0.5);
+  --color-accent-deep:   #7A1A17;
 
   --color-bg:            #0E0E0E;
   --color-surface-low:   #141414;
