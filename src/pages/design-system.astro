@@ -182,9 +182,88 @@ import LedArray from '../components/LedArray.astro';
     <!-- ── LED Array ──────────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
       <h2 class="design-sys__section-title">LED Array</h2>
-      <p class="design-sys__subtitle mb-8">PG-001 catalog number encoded as on/off states — 5 rows × 8 cols. Active LEDs flicker via JS interval.</p>
-      <div class="design-sys__led-wrapper">
-        <LedArray />
+      <p class="design-sys__subtitle mb-8">
+        Each character of the catalog code is ASCII-encoded as one row of 8 bits.
+        The dot matrix is the binary representation of the release — notation, not decoration.
+        Active LEDs flicker via JS interval.
+      </p>
+
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Props</h3>
+        <table class="led-docs__table">
+          <thead>
+            <tr>
+              <th>Prop</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>code</code></td>
+              <td><code>string</code></td>
+              <td><code>"PG-001"</code></td>
+              <td>Catalog number — each character encodes as one row of 8 LEDs (ASCII binary)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Encoding — PG-001</h3>
+        <div class="led-docs__encoding mb-8">
+          <div class="led-docs__encoding-row">
+            <span class="led-docs__char">P</span>
+            <span class="led-docs__bits">01010000</span>
+            <span class="led-docs__dec">ASCII 80</span>
+          </div>
+          <div class="led-docs__encoding-row">
+            <span class="led-docs__char">G</span>
+            <span class="led-docs__bits">01000111</span>
+            <span class="led-docs__dec">ASCII 71</span>
+          </div>
+          <div class="led-docs__encoding-row">
+            <span class="led-docs__char">-</span>
+            <span class="led-docs__bits">00101101</span>
+            <span class="led-docs__dec">ASCII 45</span>
+          </div>
+          <div class="led-docs__encoding-row">
+            <span class="led-docs__char">0</span>
+            <span class="led-docs__bits">00110000</span>
+            <span class="led-docs__dec">ASCII 48</span>
+          </div>
+          <div class="led-docs__encoding-row">
+            <span class="led-docs__char">0</span>
+            <span class="led-docs__bits">00110000</span>
+            <span class="led-docs__dec">ASCII 48</span>
+          </div>
+          <div class="led-docs__encoding-row">
+            <span class="led-docs__char">1</span>
+            <span class="led-docs__bits">00110001</span>
+            <span class="led-docs__dec">ASCII 49</span>
+          </div>
+        </div>
+        <div class="design-sys__led-wrapper">
+          <LedArray code="PG-001" />
+        </div>
+      </div>
+
+      <div class="design-sys__group mb-10">
+        <h3 class="design-sys__group-title">Example — PG-002</h3>
+        <p class="design-sys__subtitle mb-6">Next release — different dot pattern, same encoding logic.</p>
+        <div class="design-sys__led-wrapper">
+          <LedArray code="PG-002" />
+        </div>
+      </div>
+
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title">Usage</h3>
+        <div class="led-docs__usage">
+          <code>&lt;LedArray code="PG-001" /&gt;</code>
+          <code>&lt;LedArray code="PG-002" /&gt;</code>
+          <code>&lt;LedArray /&gt;  {/* defaults to PG-001 */}</code>
+        </div>
       </div>
     </section>
 
@@ -452,5 +531,88 @@ import LedArray from '../components/LedArray.astro';
     width: 100%;
     height: 1px;
     background: var(--color-border);
+  }
+
+  /* ── LED Array docs ── */
+  .led-docs__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .led-docs__table th {
+    text-align: left;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .led-docs__table td {
+    padding: 0.6rem 1rem 0.6rem 0;
+    color: var(--color-fg);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+
+  .led-docs__table td:last-child {
+    color: var(--color-fg-dim);
+  }
+
+  .led-docs__table code {
+    color: var(--color-accent);
+    font-size: 0.7rem;
+  }
+
+  .led-docs__encoding {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+  }
+
+  .led-docs__encoding-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .led-docs__char {
+    color: var(--color-accent);
+    font-weight: 700;
+    width: 1rem;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(214, 82, 76, 0.5);
+  }
+
+  .led-docs__bits {
+    color: var(--color-fg);
+    letter-spacing: 0.3em;
+  }
+
+  .led-docs__dec {
+    color: var(--color-fg-muted);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+
+  .led-docs__usage {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--color-surface-low);
+    border: 1px solid var(--color-border);
+    padding: 1.25rem 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+  }
+
+  .led-docs__usage code {
+    color: var(--color-fg-dim);
   }
 </style>

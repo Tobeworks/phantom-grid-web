@@ -1,34 +1,35 @@
 ---
-// Pattern: PG-001 catalog number encoded as on/off states (5 rows × 8 cols)
-const pattern = [
-  [1, 1, 0, 1, 0, 0, 1, 0],
-  [1, 0, 1, 1, 0, 1, 1, 0],
-  [1, 0, 0, 1, 0, 1, 0, 1],
-  [0, 1, 1, 0, 1, 0, 0, 1],
-  [0, 1, 0, 0, 1, 1, 0, 1],
-].flat();
+// Each character of the code is ASCII-encoded as one row of 8 bits.
+// "PG-001" → 6 rows × 8 cols — the LED matrix literally shows the binary
+// representation of the catalog number.
+
+interface Props {
+  code?: string;
+}
+
+const { code = 'PG-001' } = Astro.props;
+
+const pattern = code.split('').flatMap(char => {
+  const byte = char.charCodeAt(0);
+  return Array.from({ length: 8 }, (_, i) => (byte >> (7 - i)) & 1);
+});
 ---
 
-
-  <div class="led-array" id="ledArray">
-    {
-      pattern.map((state) => (
-        <div class={`led-array__dot${state ? " led-array__dot--on" : ""}`} />
-      ))
-    }
-  </div>
+<div class="led-array" id="ledArray">
+  {pattern.map(state => (
+    <div class={`led-array__dot${state ? ' led-array__dot--on' : ''}`} />
+  ))}
+</div>
 
 <script>
-  const grid = document.getElementById("ledArray");
+  const grid = document.getElementById('ledArray');
   if (grid) {
     setInterval(() => {
-      const leds = grid.querySelectorAll<HTMLElement>(".led-array__dot--on");
+      const leds = grid.querySelectorAll<HTMLElement>('.led-array__dot--on');
       const target = leds[Math.floor(Math.random() * leds.length)];
       if (target) {
-        target.style.opacity = "0.4";
-        setTimeout(() => {
-          target.style.opacity = "";
-        }, 300);
+        target.style.opacity = '0.4';
+        setTimeout(() => { target.style.opacity = ''; }, 300);
       }
     }, 800);
   }
@@ -47,9 +48,7 @@ const pattern = [
     border-radius: 50%;
     border: 1.5px solid var(--color-accent);
     opacity: 0.18;
-    transition:
-      opacity 0.3s step-end,
-      box-shadow 0.3s step-end;
+    transition: opacity 0.3s step-end, box-shadow 0.3s step-end;
   }
 
   .led-array__dot--on {
