@@ -33,7 +33,7 @@ import pkg from "../../package.json";
     </a>
 
     <div class="home__status">
-      SIGNAL INCOMING <span class="home__cursor"></span>
+      SIGNAL INCOMING <span class="pg-cursor"></span>
     </div>
   </div>
 
@@ -124,22 +124,6 @@ import pkg from "../../package.json";
     letter-spacing: 0.2em;
     color: rgba(220, 220, 220, 0.4);
     text-transform: uppercase;
-  }
-
-  /* ── Cursor ── */
-  .home__cursor {
-    display: inline-block;
-    width: 8px;
-    height: 14px;
-    background: var(--color-accent);
-    box-shadow: 0 0 10px rgba(214, 82, 76, 0.7);
-    animation: blink 1.2s step-end infinite;
-    vertical-align: middle;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
   }
 
   /* ── Footer ── */

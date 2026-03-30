@@ -9,38 +9,38 @@ import LedArray from '../components/LedArray.astro';
 
     <!-- ── Header ─────────────────────────────────────────────────── -->
     <header class="design-sys__header mb-16 pb-8">
-      <span class="design-sys__eyebrow block mb-2 text-[0.65rem] uppercase tracking-[0.4em]">PHANTOM GRID</span>
-      <h1 class="design-sys__title text-[3rem] font-bold uppercase tracking-[0.2em] mb-2">Design System</h1>
-      <p class="design-sys__subtitle text-[0.875rem] tracking-[0.1em]">Visual language reference — all components, tokens, and effects.</p>
+      <span class="design-sys__eyebrow text-eyebrow block mb-2">PHANTOM GRID</span>
+      <h1 class="design-sys__title text-display mb-2" style="font-size:3rem; letter-spacing:0.2em;">Design System</h1>
+      <p class="design-sys__subtitle text-dim">Visual language reference — all components, tokens, and effects.</p>
     </header>
 
     <!-- ── Colors ─────────────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
-      <h2 class="design-sys__section-title">Colors</h2>
+      <h2 class="design-sys__section-title pg-section-title">Colors</h2>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Accent</h3>
+        <h3 class="design-sys__group-title pg-group-title">Accent</h3>
         <div class="flex flex-wrap gap-4">
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#D6524C;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#D6524C;"></div>
             <code class="swatch__token">--color-accent</code>
             <span class="swatch__hex">#D6524C</span>
             <span class="swatch__name">Dirty Red</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#7A1A17;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#7A1A17;"></div>
             <code class="swatch__token">--color-accent-deep</code>
             <span class="swatch__hex">#7A1A17</span>
             <span class="swatch__name">Deep Red</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(214,82,76,0.5);"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:rgba(214,82,76,0.5);"></div>
             <code class="swatch__token">--color-accent-glow</code>
             <span class="swatch__hex">rgba(214,82,76,0.5)</span>
             <span class="swatch__name">Glow</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(214,82,76,0.18);"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:rgba(214,82,76,0.18);"></div>
             <code class="swatch__token">--color-accent-dim</code>
             <span class="swatch__hex">rgba(214,82,76,0.18)</span>
             <span class="swatch__name">Dim</span>
@@ -49,26 +49,26 @@ import LedArray from '../components/LedArray.astro';
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Surfaces</h3>
+        <h3 class="design-sys__group-title pg-group-title">Surfaces</h3>
         <div class="flex flex-wrap gap-4">
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#0E0E0E; border:1px solid #333;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#0E0E0E; border:1px solid #333;"></div>
             <code class="swatch__token">--color-bg</code>
             <span class="swatch__hex">#0E0E0E</span>
             <span class="swatch__name">Background</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#141414; border:1px solid #333;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#141414; border:1px solid #333;"></div>
             <code class="swatch__token">--color-surface-low</code>
             <span class="swatch__hex">#141414</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#1A1A1A; border:1px solid #333;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#1A1A1A; border:1px solid #333;"></div>
             <code class="swatch__token">--color-surface</code>
             <span class="swatch__hex">#1A1A1A</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#222222; border:1px solid #333;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#222222; border:1px solid #333;"></div>
             <code class="swatch__token">--color-surface-high</code>
             <span class="swatch__hex">#222222</span>
           </div>
@@ -76,20 +76,20 @@ import LedArray from '../components/LedArray.astro';
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Foreground</h3>
+        <h3 class="design-sys__group-title pg-group-title">Foreground</h3>
         <div class="flex flex-wrap gap-4">
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:#DCDCDC;"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:#DCDCDC;"></div>
             <code class="swatch__token">--color-fg</code>
             <span class="swatch__hex">#DCDCDC</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(220,220,220,0.4);"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:rgba(220,220,220,0.4);"></div>
             <code class="swatch__token">--color-fg-dim</code>
             <span class="swatch__hex">rgba(220,220,220,0.4)</span>
           </div>
-          <div class="swatch flex flex-col gap-1 min-w-[140px]">
-            <div class="swatch__preview h-14 rounded-sm mb-1" style="background:rgba(220,220,220,0.2);"></div>
+          <div class="swatch">
+            <div class="swatch__preview" style="background:rgba(220,220,220,0.2);"></div>
             <code class="swatch__token">--color-fg-muted</code>
             <span class="swatch__hex">rgba(220,220,220,0.2)</span>
           </div>
@@ -99,71 +99,75 @@ import LedArray from '../components/LedArray.astro';
 
     <!-- ── Typography ─────────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
-      <h2 class="design-sys__section-title">Typography</h2>
+      <h2 class="design-sys__section-title pg-section-title">Typography</h2>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Barlow Condensed — Label Font</h3>
+        <h3 class="design-sys__group-title pg-group-title">Barlow Condensed — Label Font</h3>
         <div class="flex flex-col gap-6">
-          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
-            <span class="type-sample__meta">Hero / 700 / 4rem / tracking 0.3em</span>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:4rem; letter-spacing:0.3em; text-transform:uppercase;">PHANTOM GRID</span>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Hero / 700 / clamp(2.5–5rem) / tracking 0.25em — <code>.text-hero</code></span>
+            <span class="text-hero">PHANTOM GRID</span>
           </div>
-          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
-            <span class="type-sample__meta">Display / 700 / 2.5rem / tracking 0.25em</span>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:2.5rem; letter-spacing:0.25em; text-transform:uppercase;">VECTOR FIELD SIGNALS</span>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Display / 700 / 2.5rem / tracking 0.25em — <code>.text-display</code></span>
+            <span class="text-display">VECTOR FIELD SIGNALS</span>
           </div>
-          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
-            <span class="type-sample__meta">Headline / 700 / 1.5rem / tracking 0.2em</span>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.5rem; letter-spacing:0.2em; text-transform:uppercase;">INPUT NULL — EP</span>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Headline / 700 / 1.5rem / tracking 0.2em — <code>.text-headline</code></span>
+            <span class="text-headline">INPUT NULL — EP</span>
           </div>
-          <div class="type-sample flex flex-col gap-1 pb-6 border-b border-[var(--color-border)]">
-            <span class="type-sample__meta">Label / 600 / 0.875rem / tracking 0.4em</span>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.875rem; letter-spacing:0.4em; text-transform:uppercase;">CATALOG · PG-001</span>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Label / 600 / 0.875rem / tracking 0.15em — <code>.text-label</code></span>
+            <span class="text-label">CATALOG · PG-001</span>
           </div>
-          <div class="type-sample flex flex-col gap-1 pb-6">
-            <span class="type-sample__meta">Micro / 600 / 0.65rem / tracking 0.2em</span>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;">EST. 2026 — CYBERSPACE</span>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Eyebrow / 600 / 0.65rem / tracking 0.4em — <code>.text-eyebrow</code></span>
+            <span class="text-eyebrow">EST. 2026 — CYBERSPACE</span>
+          </div>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Micro / 600 / 0.65rem / tracking 0.2em — <code>.text-micro</code></span>
+            <span class="text-micro">metadata · runtime · bpm · key</span>
+          </div>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Dim / 0.875rem / tracking 0.1em — <code>.text-dim</code></span>
+            <span class="text-dim">Secondary body copy and descriptions.</span>
           </div>
         </div>
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Phosphor Glow — Accent Text</h3>
-        <div class="type-sample flex flex-col gap-1">
-          <span class="type-sample__meta">VHS Chromatic Aberration</span>
-          <span style="
-            font-family:'Barlow Condensed',sans-serif;
-            font-weight:700; font-size:3rem;
-            letter-spacing:0.25em; text-transform:uppercase;
-            color:#DCDCDC;
-            text-shadow:
-              2px 0 rgba(214,82,76,0.6),
-              -2px 0 rgba(0,200,255,0.25),
-              0 0 20px rgba(220,220,220,0.12),
-              0 0 60px rgba(220,220,220,0.04);
-          ">PHANTOM GRID</span>
+        <h3 class="design-sys__group-title pg-group-title">Phosphor Glow — Effects</h3>
+        <div class="flex flex-col gap-6">
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">VHS Chromatic Aberration — <code>.glow-fg</code></span>
+            <span class="text-hero glow-fg">PHANTOM GRID</span>
+          </div>
+          <div class="type-sample">
+            <span class="text-micro mb-1 block">Neon Bloom Accent — <code>.glow-accent</code></span>
+            <span class="text-headline glow-accent" style="color: var(--color-accent);">SIGNAL INCOMING</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ── Visual Effects ─────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
-      <h2 class="design-sys__section-title">Visual Effects</h2>
+      <h2 class="design-sys__section-title pg-section-title">Visual Effects</h2>
 
       <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
-        <div class="effect-card flex flex-col gap-4 p-6">
+        <div class="effect-card pg-surface-low flex flex-col gap-4 p-6">
           <span class="effect-card__label">Neon Bloom — Accent</span>
-          <div class="effect-card__demo" style="color:#D6524C; text-shadow: 0 0 10px rgba(214,82,76,0.7), 0 0 30px rgba(214,82,76,0.3);">SIGNAL</div>
-          <code class="effect-card__code">text-shadow: 0 0 10px rgba(214,82,76,0.7)</code>
+          <div class="effect-card__demo glow-accent" style="color: var(--color-accent);">SIGNAL</div>
+          <code class="effect-card__code">text-shadow: 0 0 10px rgba(214,82,76,0.5)</code>
         </div>
 
-        <div class="effect-card flex flex-col gap-4 p-6">
+        <div class="effect-card pg-surface-low flex flex-col gap-4 p-6">
           <span class="effect-card__label">Phosphor Glow — Foreground</span>
-          <div class="effect-card__demo" style="text-shadow: 2px 0 rgba(214,82,76,0.6), -2px 0 rgba(0,200,255,0.25), 0 0 20px rgba(220,220,220,0.12);">TRANSMISSION</div>
+          <div class="effect-card__demo glow-fg">TRANSMISSION</div>
           <code class="effect-card__code">Chromatic aberration + bloom</code>
         </div>
 
-        <div class="effect-card flex flex-col gap-4 p-6">
+        <div class="effect-card pg-surface-low flex flex-col gap-4 p-6">
           <span class="effect-card__label">Box Glow — Surface</span>
           <div class="effect-card__demo">
             <div style="padding:0.5rem 1rem; border:1px solid rgba(214,82,76,0.3); box-shadow: 0 0 15px rgba(214,82,76,0.2), inset 0 0 10px rgba(214,82,76,0.05);">PG-001</div>
@@ -171,25 +175,25 @@ import LedArray from '../components/LedArray.astro';
           <code class="effect-card__code">box-shadow: 0 0 15px rgba(214,82,76,0.2)</code>
         </div>
 
-        <div class="effect-card flex flex-col gap-4 p-6">
+        <div class="effect-card pg-surface-low flex flex-col gap-4 p-6">
           <span class="effect-card__label">Cursor Blink</span>
           <div class="effect-card__demo">READY <span class="pg-cursor"></span></div>
-          <code class="effect-card__code">step-end infinite, 1.2s</code>
+          <code class="effect-card__code">.pg-cursor — step-end infinite, 1.2s</code>
         </div>
       </div>
     </section>
 
     <!-- ── LED Array ──────────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
-      <h2 class="design-sys__section-title">LED Array</h2>
-      <p class="design-sys__subtitle mb-8">
+      <h2 class="design-sys__section-title pg-section-title">LED Array</h2>
+      <p class="design-sys__subtitle text-dim mb-8">
         Each character of the catalog code is ASCII-encoded as one row of 8 bits.
         The dot matrix is the binary representation of the release — notation, not decoration.
         Active LEDs flicker via JS interval.
       </p>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Props</h3>
+        <h3 class="design-sys__group-title pg-group-title">Props</h3>
         <table class="led-docs__table">
           <thead>
             <tr>
@@ -211,37 +215,37 @@ import LedArray from '../components/LedArray.astro';
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Encoding — PG-001</h3>
+        <h3 class="design-sys__group-title pg-group-title">Encoding — PG-001</h3>
         <div class="led-docs__encoding mb-8">
           <div class="led-docs__encoding-row">
             <span class="led-docs__char">P</span>
             <span class="led-docs__bits">01010000</span>
-            <span class="led-docs__dec">ASCII 80</span>
+            <span class="text-micro">ASCII 80</span>
           </div>
           <div class="led-docs__encoding-row">
             <span class="led-docs__char">G</span>
             <span class="led-docs__bits">01000111</span>
-            <span class="led-docs__dec">ASCII 71</span>
+            <span class="text-micro">ASCII 71</span>
           </div>
           <div class="led-docs__encoding-row">
             <span class="led-docs__char">-</span>
             <span class="led-docs__bits">00101101</span>
-            <span class="led-docs__dec">ASCII 45</span>
+            <span class="text-micro">ASCII 45</span>
           </div>
           <div class="led-docs__encoding-row">
             <span class="led-docs__char">0</span>
             <span class="led-docs__bits">00110000</span>
-            <span class="led-docs__dec">ASCII 48</span>
+            <span class="text-micro">ASCII 48</span>
           </div>
           <div class="led-docs__encoding-row">
             <span class="led-docs__char">0</span>
             <span class="led-docs__bits">00110000</span>
-            <span class="led-docs__dec">ASCII 48</span>
+            <span class="text-micro">ASCII 48</span>
           </div>
           <div class="led-docs__encoding-row">
             <span class="led-docs__char">1</span>
             <span class="led-docs__bits">00110001</span>
-            <span class="led-docs__dec">ASCII 49</span>
+            <span class="text-micro">ASCII 49</span>
           </div>
         </div>
         <div class="design-sys__led-wrapper">
@@ -250,16 +254,16 @@ import LedArray from '../components/LedArray.astro';
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Example — PG-002</h3>
-        <p class="design-sys__subtitle mb-6">Next release — different dot pattern, same encoding logic.</p>
+        <h3 class="design-sys__group-title pg-group-title">Example — PG-002</h3>
+        <p class="design-sys__subtitle text-dim mb-6">Next release — different dot pattern, same encoding logic.</p>
         <div class="design-sys__led-wrapper">
           <LedArray code="PG-002" />
         </div>
       </div>
 
       <div class="design-sys__group">
-        <h3 class="design-sys__group-title">Usage</h3>
-        <div class="led-docs__usage">
+        <h3 class="design-sys__group-title pg-group-title">Usage</h3>
+        <div class="pg-code-block">
           <code>&lt;LedArray code="PG-001" /&gt;</code>
           <code>&lt;LedArray code="PG-002" /&gt;</code>
           <code>&lt;LedArray /&gt;  {/* defaults to PG-001 */}</code>
@@ -269,7 +273,7 @@ import LedArray from '../components/LedArray.astro';
 
     <!-- ── Terminal ───────────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
-      <h2 class="design-sys__section-title">Terminal</h2>
+      <h2 class="design-sys__section-title pg-section-title">Terminal</h2>
       <Terminal
         title="PHANTOM_GRID_OS"
         lines={[
@@ -286,10 +290,10 @@ import LedArray from '../components/LedArray.astro';
 
     <!-- ── Components ─────────────────────────────────────────────── -->
     <section class="design-sys__section mb-16">
-      <h2 class="design-sys__section-title">Components</h2>
+      <h2 class="design-sys__section-title pg-section-title">Components</h2>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Buttons</h3>
+        <h3 class="design-sys__group-title pg-group-title">Buttons</h3>
         <div class="flex flex-wrap gap-4 items-center">
           <button class="btn btn--primary">RELEASE NOW</button>
           <button class="btn btn--ghost">VIEW CATALOG</button>
@@ -297,7 +301,7 @@ import LedArray from '../components/LedArray.astro';
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Badges</h3>
+        <h3 class="design-sys__group-title pg-group-title">Badges</h3>
         <div class="flex flex-wrap gap-4 items-center">
           <span class="badge">PG-001</span>
           <span class="badge">EP</span>
@@ -307,12 +311,12 @@ import LedArray from '../components/LedArray.astro';
       </div>
 
       <div class="design-sys__group mb-10">
-        <h3 class="design-sys__group-title">Input</h3>
+        <h3 class="design-sys__group-title pg-group-title">Input</h3>
         <input class="pg-input" placeholder="SEARCH CATALOG_" />
       </div>
 
       <div class="design-sys__group">
-        <h3 class="design-sys__group-title">Divider</h3>
+        <h3 class="design-sys__group-title pg-group-title">Divider</h3>
         <div class="pg-divider"></div>
       </div>
     </section>
@@ -321,28 +325,17 @@ import LedArray from '../components/LedArray.astro';
 </BaseLayout>
 
 <style>
-  /* ── Page block ── */
+  /* ── Page wrapper ── */
   .design-sys {
     max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem 8rem;
     height: 100vh;
     overflow-y: auto;
-    font-family: var(--font-label);
-    color: var(--color-fg);
   }
 
   .design-sys__header {
     border-bottom: 1px solid var(--color-border);
-  }
-
-  .design-sys__eyebrow {
-    color: var(--color-accent);
-    text-shadow: 0 0 10px rgba(214, 82, 76, 0.5);
-  }
-
-  .design-sys__title {
-    color: var(--color-fg);
   }
 
   .design-sys__led-wrapper {
@@ -351,37 +344,21 @@ import LedArray from '../components/LedArray.astro';
     padding: 2rem 0;
   }
 
-  .design-sys__subtitle {
-    color: var(--color-fg-dim);
-    letter-spacing: 0.1em;
-  }
-
-  .design-sys__section-title {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    margin-bottom: 2rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-border);
-    text-shadow: 0 0 10px rgba(214, 82, 76, 0.4);
-  }
-
-  .design-sys__group-title {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-fg-dim);
-    margin-bottom: 1rem;
-  }
-
   /* ── Swatch block ── */
   .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 140px;
     font-size: 0.65rem;
     letter-spacing: 0.05em;
     color: var(--color-fg-dim);
+  }
+
+  .swatch__preview {
+    height: 3.5rem;
+    border-radius: 2px;
+    margin-bottom: 0.25rem;
   }
 
   .swatch__token {
@@ -389,9 +366,7 @@ import LedArray from '../components/LedArray.astro';
     font-size: 0.6rem;
   }
 
-  .swatch__hex {
-    font-size: 0.6rem;
-  }
+  .swatch__hex  { font-size: 0.6rem; }
 
   .swatch__name {
     color: var(--color-accent);
@@ -400,19 +375,17 @@ import LedArray from '../components/LedArray.astro';
   }
 
   /* ── Type sample block ── */
-  .type-sample__meta {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--color-fg-muted);
-    text-transform: uppercase;
+  .type-sample {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .type-sample:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   /* ── Effect card block ── */
-  .effect-card {
-    background: var(--color-surface-low);
-    border: 1px solid var(--color-border);
-  }
-
   .effect-card__label {
     font-size: 0.65rem;
     letter-spacing: 0.2em;
@@ -436,101 +409,6 @@ import LedArray from '../components/LedArray.astro';
     color: var(--color-fg-muted);
     letter-spacing: 0.05em;
     font-family: monospace;
-  }
-
-  /* ── Cursor (reusable) ── */
-  .pg-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 1.2rem;
-    background: var(--color-accent);
-    box-shadow: 0 0 10px rgba(214, 82, 76, 0.7);
-    animation: blink 1.2s step-end infinite;
-    vertical-align: middle;
-    margin-left: 4px;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
-
-  /* ── Button block ── */
-  .btn {
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.5rem;
-    cursor: pointer;
-  }
-
-  .btn--primary {
-    background: var(--color-accent);
-    color: var(--color-accent-deep);
-    border: none;
-    transition: box-shadow 0.15s;
-  }
-
-  .btn--primary:hover {
-    box-shadow: 0 0 15px var(--color-accent);
-  }
-
-  .btn--ghost {
-    background: transparent;
-    color: var(--color-accent);
-    border: 1px solid rgba(214, 82, 76, 0.3);
-    transition: background 0.15s, box-shadow 0.15s;
-  }
-
-  .btn--ghost:hover {
-    background: rgba(214, 82, 76, 0.1);
-    box-shadow: 0 0 15px rgba(214, 82, 76, 0.2);
-  }
-
-  /* ── Badge block ── */
-  .badge {
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    border: 1px solid rgba(214, 82, 76, 0.4);
-    padding: 0.2rem 0.6rem;
-  }
-
-  .badge--muted {
-    color: var(--color-fg-dim);
-    border-color: var(--color-border);
-  }
-
-  /* ── Input (reusable) ── */
-  .pg-input {
-    background: var(--color-bg);
-    border: none;
-    border-bottom: 1px solid var(--color-accent);
-    color: var(--color-fg);
-    font-family: var(--font-label);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    padding: 0.5rem 0;
-    width: 320px;
-    outline: none;
-    text-transform: uppercase;
-  }
-
-  .pg-input::placeholder {
-    color: var(--color-fg-muted);
-  }
-
-  /* ── Divider (reusable) ── */
-  .pg-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--color-border);
   }
 
   /* ── LED Array docs ── */
@@ -559,9 +437,7 @@ import LedArray from '../components/LedArray.astro';
     vertical-align: top;
   }
 
-  .led-docs__table td:last-child {
-    color: var(--color-fg-dim);
-  }
+  .led-docs__table td:last-child { color: var(--color-fg-dim); }
 
   .led-docs__table code {
     color: var(--color-accent);
@@ -595,13 +471,8 @@ import LedArray from '../components/LedArray.astro';
     letter-spacing: 0.3em;
   }
 
-  .led-docs__dec {
-    color: var(--color-fg-muted);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-  }
-
-  .led-docs__usage {
+  /* ── Code block (reuse candidate once 3rd use appears) ── */
+  .pg-code-block {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -612,7 +483,5 @@ import LedArray from '../components/LedArray.astro';
     font-size: 0.8rem;
   }
 
-  .led-docs__usage code {
-    color: var(--color-fg-dim);
-  }
+  .pg-code-block code { color: var(--color-fg-dim); }
 </style>
