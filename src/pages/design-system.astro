@@ -1,4 +1,5 @@
 ---
+import { Code } from 'astro:components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Terminal from '../components/Terminal.astro';
 import LedArray from '../components/LedArray.astro';
@@ -7,6 +8,13 @@ import ReleaseList from '../components/ReleaseList.astro';
 import releasesData from '../../phantom-grid-os/data/releases.json';
 
 const exampleRelease = releasesData.releases[0];
+
+const codeSnippets = {
+  ledArrayBasic: `<LedArray code="PG-001" />\n<LedArray code="PG-002" />\n<LedArray />  {/* defaults to PG-001 */}`,
+  ledArrayProps: `interface Props {\n  code?: string;  // catalog number — ASCII binary encoded\n  size?: 'sm' | 'md';  // sm = cards, md = hero (default)\n}`,
+  releaseCardUsage: `import ReleaseCard from '../components/ReleaseCard.astro';\nimport releasesData from '../../phantom-grid-os/data/releases.json';\n\nconst release = releasesData.releases[0];\n---\n\n<ReleaseCard release={release} />`,
+  releaseListUsage: `import ReleaseList from '../components/ReleaseList.astro';\n---\n\n<ReleaseList />`,
+};
 ---
 
 <BaseLayout title="PHANTOM GRID — Design System">
@@ -268,11 +276,7 @@ const exampleRelease = releasesData.releases[0];
 
       <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Usage</h3>
-        <div class="pg-code-block">
-          <code>&lt;LedArray code="PG-001" /&gt;</code>
-          <code>&lt;LedArray code="PG-002" /&gt;</code>
-          <code>&lt;LedArray /&gt;  {/* defaults to PG-001 */}</code>
-        </div>
+        <Code code={codeSnippets.ledArrayBasic} lang="astro" theme="dracula" />
       </div>
     </section>
 
@@ -316,15 +320,7 @@ const exampleRelease = releasesData.releases[0];
       <!-- Single card usage -->
       <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Usage — Single Card</h3>
-        <div class="pg-code-block">
-          <code>import ReleaseCard from '../components/ReleaseCard.astro';</code>
-          <code>import releasesData from '../../phantom-grid-os/data/releases.json';</code>
-          <code></code>
-          <code>const release = releasesData.releases[0];</code>
-          <code>---</code>
-          <code></code>
-          <code>&lt;ReleaseCard release={"{"}release{"}"} /&gt;</code>
-        </div>
+        <Code code={codeSnippets.releaseCardUsage} lang="astro" theme="dracula" />
       </div>
 
       <!-- Full list live example -->
@@ -340,12 +336,7 @@ const exampleRelease = releasesData.releases[0];
       <!-- Full list usage -->
       <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Usage — Release List</h3>
-        <div class="pg-code-block">
-          <code>import ReleaseList from '../components/ReleaseList.astro';</code>
-          <code>---</code>
-          <code></code>
-          <code>&lt;ReleaseList /&gt;</code>
-        </div>
+        <Code code={codeSnippets.releaseListUsage} lang="astro" theme="dracula" />
       </div>
     </section>
 
@@ -563,17 +554,4 @@ const exampleRelease = releasesData.releases[0];
     max-width: 280px;
   }
 
-  /* ── Code block (reuse candidate once 3rd use appears) ── */
-  .pg-code-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    background: var(--color-surface-low);
-    border: 1px solid var(--color-border);
-    padding: 1.25rem 1.5rem;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-  }
-
-  .pg-code-block code { color: var(--color-fg-dim); }
 </style>
