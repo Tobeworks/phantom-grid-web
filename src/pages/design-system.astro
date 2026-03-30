@@ -2,6 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Terminal from '../components/Terminal.astro';
 import LedArray from '../components/LedArray.astro';
+import ReleaseCard from '../components/ReleaseCard.astro';
+import ReleaseList from '../components/ReleaseList.astro';
+import releasesData from '../../phantom-grid-os/data/releases.json';
+
+const exampleRelease = releasesData.releases[0];
 ---
 
 <BaseLayout title="PHANTOM GRID — Design System">
@@ -18,7 +23,7 @@ import LedArray from '../components/LedArray.astro';
     <section class="design-sys__section mb-16">
       <h2 class="design-sys__section-title pg-section-title">Colors</h2>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Accent</h3>
         <div class="flex flex-wrap gap-4">
           <div class="swatch">
@@ -48,7 +53,7 @@ import LedArray from '../components/LedArray.astro';
         </div>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Surfaces</h3>
         <div class="flex flex-wrap gap-4">
           <div class="swatch">
@@ -75,7 +80,7 @@ import LedArray from '../components/LedArray.astro';
         </div>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Foreground</h3>
         <div class="flex flex-wrap gap-4">
           <div class="swatch">
@@ -101,7 +106,7 @@ import LedArray from '../components/LedArray.astro';
     <section class="design-sys__section mb-16">
       <h2 class="design-sys__section-title pg-section-title">Typography</h2>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Barlow Condensed — Label Font</h3>
         <div class="flex flex-col gap-6">
           <div class="type-sample">
@@ -135,7 +140,7 @@ import LedArray from '../components/LedArray.astro';
         </div>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Phosphor Glow — Effects</h3>
         <div class="flex flex-col gap-6">
           <div class="type-sample">
@@ -192,7 +197,7 @@ import LedArray from '../components/LedArray.astro';
         Active LEDs flicker via JS interval.
       </p>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Props</h3>
         <table class="led-docs__table">
           <thead>
@@ -214,7 +219,7 @@ import LedArray from '../components/LedArray.astro';
         </table>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Encoding — PG-001</h3>
         <div class="led-docs__encoding mb-8">
           <div class="led-docs__encoding-row">
@@ -253,7 +258,7 @@ import LedArray from '../components/LedArray.astro';
         </div>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Example — PG-002</h3>
         <p class="design-sys__subtitle text-dim mb-6">Next release — different dot pattern, same encoding logic.</p>
         <div class="design-sys__led-wrapper">
@@ -267,6 +272,79 @@ import LedArray from '../components/LedArray.astro';
           <code>&lt;LedArray code="PG-001" /&gt;</code>
           <code>&lt;LedArray code="PG-002" /&gt;</code>
           <code>&lt;LedArray /&gt;  {/* defaults to PG-001 */}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Release Card ─────────────────────────────────────────────── -->
+    <section class="design-sys__section mb-16">
+      <h2 class="design-sys__section-title pg-section-title">Release Card</h2>
+      <p class="design-sys__subtitle text-dim mb-8">
+        Single release card — cover art, LED dot matrix (catalog code encoded), meta badges, VU bar (track count).
+        Data comes from <code>releases.json</code> at build time.
+      </p>
+
+      <!-- Props table -->
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title pg-group-title">Props — ReleaseCard</h3>
+        <table class="led-docs__table">
+          <thead>
+            <tr><th>Prop</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>release</code></td>
+              <td><code>Release</code></td>
+              <td>Full release object from <code>releases.json</code> — catalog, artist, title, format, year, cover, artwork, tracks</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Single card live example -->
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title pg-group-title">Single Card — Live</h3>
+        {exampleRelease ? (
+          <div class="design-sys__card-preview">
+            <ReleaseCard release={exampleRelease} />
+          </div>
+        ) : (
+          <p class="text-micro">No releases in releases.json yet.</p>
+        )}
+      </div>
+
+      <!-- Single card usage -->
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title pg-group-title">Usage — Single Card</h3>
+        <div class="pg-code-block">
+          <code>import ReleaseCard from '../components/ReleaseCard.astro';</code>
+          <code>import releasesData from '../../phantom-grid-os/data/releases.json';</code>
+          <code></code>
+          <code>const release = releasesData.releases[0];</code>
+          <code>---</code>
+          <code></code>
+          <code>&lt;ReleaseCard release={"{"}release{"}"} /&gt;</code>
+        </div>
+      </div>
+
+      <!-- Full list live example -->
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title pg-group-title">Release List — Live</h3>
+        <p class="design-sys__subtitle text-dim mb-6">
+          <code>ReleaseList</code> reads <code>releases.json</code> autonomously — no props needed.
+          Grid auto-fills with <code>minmax(260px, 1fr)</code>.
+        </p>
+        <ReleaseList />
+      </div>
+
+      <!-- Full list usage -->
+      <div class="design-sys__group">
+        <h3 class="design-sys__group-title pg-group-title">Usage — Release List</h3>
+        <div class="pg-code-block">
+          <code>import ReleaseList from '../components/ReleaseList.astro';</code>
+          <code>---</code>
+          <code></code>
+          <code>&lt;ReleaseList /&gt;</code>
         </div>
       </div>
     </section>
@@ -292,7 +370,7 @@ import LedArray from '../components/LedArray.astro';
     <section class="design-sys__section mb-16">
       <h2 class="design-sys__section-title pg-section-title">Components</h2>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Buttons</h3>
         <div class="flex flex-wrap gap-4 items-center">
           <button class="btn btn--primary">RELEASE NOW</button>
@@ -300,7 +378,7 @@ import LedArray from '../components/LedArray.astro';
         </div>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Badges</h3>
         <div class="flex flex-wrap gap-4 items-center">
           <span class="badge">PG-001</span>
@@ -310,7 +388,7 @@ import LedArray from '../components/LedArray.astro';
         </div>
       </div>
 
-      <div class="design-sys__group mb-10">
+      <div class="design-sys__group">
         <h3 class="design-sys__group-title pg-group-title">Input</h3>
         <input class="pg-input" placeholder="SEARCH CATALOG_" />
       </div>
@@ -336,6 +414,15 @@ import LedArray from '../components/LedArray.astro';
 
   .design-sys__header {
     border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Consistent vertical rhythm for all groups */
+  .design-sys__group {
+    margin-bottom: 3rem;
+  }
+
+  .design-sys__group:last-child {
+    margin-bottom: 0;
   }
 
   .design-sys__led-wrapper {
@@ -469,6 +556,11 @@ import LedArray from '../components/LedArray.astro';
   .led-docs__bits {
     color: var(--color-fg);
     letter-spacing: 0.3em;
+  }
+
+  /* ── Release card preview (constrained width) ── */
+  .design-sys__card-preview {
+    max-width: 280px;
   }
 
   /* ── Code block (reuse candidate once 3rd use appears) ── */

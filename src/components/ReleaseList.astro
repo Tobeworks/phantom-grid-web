@@ -1,0 +1,53 @@
+---
+import ReleaseCard from './ReleaseCard.astro';
+import releasesData from '../../phantom-grid-os/data/releases.json';
+
+const releases = releasesData.releases;
+---
+
+<section class="release-list">
+
+  <header class="release-list__header">
+    <span class="release-list__label text-eyebrow">// LATEST_SIGNALS</span>
+    <span class="release-list__index text-micro">{releases.length} RELEASE{releases.length !== 1 ? 'S' : ''}</span>
+  </header>
+
+  {releases.length > 0 ? (
+    <div class="release-list__grid">
+      {releases.map(release => (
+        <ReleaseCard release={release} />
+      ))}
+    </div>
+  ) : (
+    <div class="release-list__empty">
+      <span class="text-micro">NO SIGNALS YET <span class="pg-cursor"></span></span>
+    </div>
+  )}
+
+</section>
+
+<style>
+  .release-list {
+    width: 100%;
+  }
+
+  .release-list__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .release-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .release-list__empty {
+    padding: 4rem 0;
+    text-align: center;
+  }
+</style>

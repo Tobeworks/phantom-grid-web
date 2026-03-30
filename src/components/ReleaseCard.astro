@@ -1,0 +1,193 @@
+---
+interface Track {
+  number: number;
+  title: string;
+  bpm: string;
+  key: string;
+  runtime: string;
+  url: string;
+  url_320: string;
+}
+
+interface Release {
+  catalog: string;
+  artist: string;
+  title: string;
+  format: string;
+  year: string;
+  genre: string;
+  cover: string;
+  artwork: Record<string, { jpg: string; webp: string }>;
+  bandcamp: string;
+  tracks: Track[];
+}
+
+interface Props {
+  release: Release;
+}
+
+const { release } = Astro.props;
+const { catalog, artist, title, format, year, genre = '', cover, artwork, tracks } = release;
+
+const coverWebp = artwork?.['600']?.webp || cover;
+const coverJpg  = artwork?.['600']?.jpg  || cover;
+
+const VU_TOTAL   = 10;
+const trackCount = tracks.length;
+---
+
+<article class="release-card">
+
+  <!-- Cover art -->
+  <div class="release-card__art">
+    {coverJpg ? (
+      <picture>
+        <source srcset={coverWebp} type="image/webp" />
+        <img
+          class="release-card__cover"
+          src={coverJpg}
+          alt={`${artist} — ${title}`}
+          loading="lazy"
+          width="600"
+          height="600"
+        />
+      </picture>
+    ) : (
+      <div class="release-card__cover-placeholder" />
+    )}
+  </div>
+
+  <!-- Info area -->
+  <div class="release-card__info">
+
+    <div class="release-card__meta">
+      <span class="release-card__catalog badge">{catalog}</span>
+      {format && <span class="release-card__format badge badge--muted">{format}</span>}
+      {genre  && <span class="release-card__genre  badge badge--muted">{genre}</span>}
+    </div>
+
+    <h3 class="release-card__title">{title}</h3>
+    <p class="release-card__artist">
+      {artist}{year ? <span class="release-card__year"> // {year}</span> : ''}
+    </p>
+
+    <!-- VU bar: filled segments = track count -->
+    <div class="release-card__vu" aria-label={`${trackCount} tracks`} title={`${trackCount} tracks`}>
+      {Array.from({ length: VU_TOTAL }, (_, i) => (
+        <div class={`release-card__vu-seg${i < trackCount ? ' release-card__vu-seg--on' : ''}`} />
+      ))}
+      <span class="release-card__track-count">{trackCount} TRK</span>
+    </div>
+
+  </div>
+</article>
+
+<style>
+  /* ── Card block ── */
+  .release-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface-low);
+    border: 1px solid var(--color-border);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+
+  .release-card:hover {
+    border-color: rgba(214, 82, 76, 0.3);
+    box-shadow: 0 0 24px rgba(214, 82, 76, 0.08);
+  }
+
+  /* ── Cover art ── */
+  .release-card__art {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .release-card__cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .release-card:hover .release-card__cover {
+    transform: scale(1.03);
+  }
+
+  .release-card__cover-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-surface);
+  }
+
+  /* ── Info area ── */
+  .release-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    flex: 1;
+  }
+
+  .release-card__meta {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .release-card__title {
+    font-family: var(--font-label);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    line-height: 1.2;
+    margin-top: 0.25rem;
+  }
+
+  .release-card__artist {
+    font-family: var(--font-label);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  .release-card__year {
+    color: var(--color-fg-muted);
+  }
+
+  /* ── VU bar ── */
+  .release-card__vu {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+
+  .release-card__vu-seg {
+    flex: 1;
+    height: 4px;
+    background: var(--color-surface-high);
+  }
+
+  .release-card__vu-seg--on {
+    background: var(--color-accent);
+    box-shadow: 0 0 4px rgba(214, 82, 76, 0.5);
+  }
+
+  .release-card__track-count {
+    font-family: var(--font-label);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--color-fg-muted);
+    white-space: nowrap;
+    margin-left: 0.5rem;
+  }
+</style>

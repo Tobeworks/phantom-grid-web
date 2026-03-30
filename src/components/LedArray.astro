@@ -5,27 +5,36 @@
 
 interface Props {
   code?: string;
+  size?: 'sm' | 'md';  // sm = cards, md = hero (default)
 }
 
-const { code = 'PG-001' } = Astro.props;
+const { code = 'PG-001', size = 'md' } = Astro.props;
 
 const pattern = code.split('').flatMap(char => {
   const byte = char.charCodeAt(0);
   return Array.from({ length: 8 }, (_, i) => (byte >> (7 - i)) & 1);
 });
+
+const uid = `led-${Math.random().toString(36).slice(2, 9)}`;
+const dotSize = size === 'sm' ? '7px'  : '20px';
+const gapSize = size === 'sm' ? '4px'  : '10px';
 ---
 
-<div class="led-array" id="ledArray">
+<div
+  class="led-array"
+  id={uid}
+  style={`--led-size:${dotSize}; --led-gap:${gapSize};`}
+>
   {pattern.map(state => (
     <div class={`led-array__dot${state ? ' led-array__dot--on' : ''}`} />
   ))}
 </div>
 
-<script>
-  const grid = document.getElementById('ledArray');
+<script define:vars={{ uid }}>
+  const grid = document.getElementById(uid);
   if (grid) {
     setInterval(() => {
-      const leds = grid.querySelectorAll<HTMLElement>('.led-array__dot--on');
+      const leds = grid.querySelectorAll('.led-array__dot--on');
       const target = leds[Math.floor(Math.random() * leds.length)];
       if (target) {
         target.style.opacity = '0.4';
@@ -38,13 +47,13 @@ const pattern = code.split('').flatMap(char => {
 <style>
   .led-array {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(8, var(--led-size, 20px));
+    gap: var(--led-gap, 10px);
   }
 
   .led-array__dot {
-    width: 20px;
-    height: 20px;
+    width: var(--led-size, 20px);
+    height: var(--led-size, 20px);
     border-radius: 50%;
     border: 1.5px solid var(--color-accent);
     opacity: 0.18;
