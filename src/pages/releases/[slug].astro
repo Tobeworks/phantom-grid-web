@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AudioPlayer from '../../components/AudioPlayer.astro';
+import LedArray from '../../components/LedArray.astro';
+import releasesData from '../../../phantom-grid-os/data/releases.json';
+
+export function getStaticPaths() {
+  return releasesData.releases.map((r) => ({
+    params: { slug: r.catalog.toLowerCase() },
+  }));
+}
+
+const { slug } = Astro.params;
+const release = releasesData.releases.find(
+  (r) => r.catalog.toLowerCase() === slug
+);
+
+if (!release) return Astro.redirect('/404');
+
+const {
+  catalog, artist, title, format, year, genre,
+  artwork, cover, tracks, bandcamp,
+} = release;
+
+const art1500webp = artwork?.['1500']?.webp;
+const art1500jpg  = artwork?.['1500']?.jpg;
+const art300jpg   = artwork?.['300']?.jpg || cover;
+
+const playerTracks = tracks.map((t) => ({
+  number: t.number,
+  title:  t.title,
+  url:    t.url,
+}));
+---
+
+<BaseLayout
+  title={`${artist} — ${title} | PHANTOM GRID`}
+  description={`${catalog} · ${format}${year ? ` · ${year}` : ''} — Phantom Grid`}
+>
+  <div class="release-page">
+
+    <!-- Back nav -->
+    <nav class="release-page__nav">
+      <a href="/" class="release-page__back text-eyebrow">← PHANTOM GRID</a>
+    </nav>
+
+    <!-- Hero -->
+    <div class="release-page__hero">
+
+      <!-- Artwork -->
+      <div class="release-page__artwork-wrap">
+        {art1500jpg ? (
+          <picture>
+            {art1500webp && <source srcset={art1500webp} type="image/webp" />}
+            <img
+              class="release-page__artwork"
+              src={art1500jpg}
+              alt={`${artist} — ${title}`}
+              width="600"
+              height="600"
+            />
+          </picture>
+        ) : (
+          <div class="release-page__artwork-placeholder" />
+        )}
+      </div>
+
+      <!-- Info -->
+      <div class="release-page__info">
+        <div class="release-page__meta">
+          <span class="badge">{catalog}</span>
+          {format && <span class="badge badge--muted">{format}</span>}
+          {genre  && <span class="badge badge--muted">{genre}</span>}
+          {year   && <span class="badge badge--muted">{year}</span>}
+        </div>
+
+        <h1 class="release-page__title text-display">{title}</h1>
+        <p class="release-page__artist">{artist}</p>
+
+        <div class="release-page__stats text-micro">
+          <span>{tracks.length} TRACK{tracks.length !== 1 ? 'S' : ''}</span>
+          {bandcamp && (
+            <a
+              href={bandcamp}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="release-page__bandcamp-link">
+              BANDCAMP ↗
+            </a>
+          )}
+        </div>
+
+        <!-- Player -->
+        <div class="release-page__dots">
+          <LedArray code={catalog} size="sm" />
+        </div>
+
+        <div class="release-page__player">
+          <AudioPlayer tracks={playerTracks} />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .release-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem 6rem;
+    min-height: 100vh;
+  }
+
+  /* ── Nav ── */
+  .release-page__nav {
+    margin-bottom: 3rem;
+  }
+
+  .release-page__back {
+    color: var(--color-fg-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .release-page__back:hover {
+    color: var(--color-accent);
+  }
+
+  /* ── Hero grid ── */
+  .release-page__hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) {
+    .release-page__hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Artwork ── */
+  .release-page__artwork-wrap {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .release-page__artwork {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--color-border);
+    box-shadow:
+      0 0 0 1px rgba(214, 82, 76, 0.08),
+      0 8px 40px rgba(0, 0, 0, 0.6),
+      0 0 60px rgba(214, 82, 76, 0.06);
+  }
+
+  .release-page__artwork-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  /* ── Info column ── */
+  .release-page__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .release-page__meta {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .release-page__title {
+    line-height: 1.1;
+    margin-top: 0.25rem;
+  }
+
+  .release-page__artist {
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  .release-page__stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .release-page__bandcamp-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    transition: opacity 0.2s;
+  }
+
+  .release-page__bandcamp-link:hover {
+    opacity: 0.75;
+  }
+
+  .release-page__dots {
+    padding: 0.5rem 0;
+  }
+
+  .release-page__player {
+    margin-top: 0.5rem;
+  }
+</style>
