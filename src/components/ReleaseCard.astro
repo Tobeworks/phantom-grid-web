@@ -34,9 +34,10 @@ const coverJpg  = artwork?.['600']?.jpg  || cover;
 
 const VU_TOTAL   = 10;
 const trackCount = tracks.length;
+const slug = catalog.toLowerCase();
 ---
 
-<article class="release-card">
+<a href={`/releases/${slug}`} class="release-card">
 
   <!-- Cover art -->
   <div class="release-card__art">
@@ -80,7 +81,7 @@ const trackCount = tracks.length;
     </div>
 
   </div>
-</article>
+</a>
 
 <style>
   /* ── Card block ── */
@@ -90,7 +91,9 @@ const trackCount = tracks.length;
     background: var(--color-surface-low);
     border: 1px solid var(--color-border);
     transition: border-color 0.2s, box-shadow 0.2s;
-    cursor: default;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
   }
 
   .release-card:hover {
