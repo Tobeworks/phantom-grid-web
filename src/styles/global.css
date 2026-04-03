@@ -2,43 +2,65 @@
 @source "../**/*.{astro,ts,js,mjs}";
 
 @theme {
-  /* ── Colors ── */
+  /* ── Accent ── */
   --color-accent:        #D6524C;
-  --color-accent-dim:    rgba(214, 82, 76, 0.18);
-  --color-accent-glow:   rgba(214, 82, 76, 0.5);
   --color-accent-deep:   #7A1A17;
+  --color-accent-dim:    rgba(214, 82, 76, 0.18);
+  --color-accent-border: rgba(214, 82, 76, 0.3);
+  --color-accent-glow:   rgba(214, 82, 76, 0.5);
+  --color-accent-strong: rgba(214, 82, 76, 0.7);
+  --color-accent-subtle: rgba(214, 82, 76, 0.08);
 
+  /* Helper for JS Canvas — raw RGB components */
+  --color-accent-rgb:    214, 82, 76;
+  --color-bg-rgb:        14, 14, 14;
+
+  /* ── Surfaces ── */
   --color-bg:            #0E0E0E;
   --color-surface-low:   #141414;
   --color-surface:       #1A1A1A;
   --color-surface-high:  #222222;
   --color-border:        rgba(220, 220, 220, 0.08);
 
+  /* ── Foreground ── */
   --color-fg:            #DCDCDC;
   --color-fg-dim:        rgba(220, 220, 220, 0.4);
+  --color-fg-faint:      rgba(220, 220, 220, 0.3);
   --color-fg-muted:      rgba(220, 220, 220, 0.2);
+
+  /* ── Special effects ── */
+  --color-cyan:          rgba(0, 200, 255, 0.5);
+  --color-cyan-dim:      rgba(0, 200, 255, 0.25);
 
   /* ── Typography ── */
   --font-label:          'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-mono:           'Courier New', 'Monaco', monospace;
   --font-data:           'Inter', monospace;
 
   /* ── Spacing / Grid ── */
-  --spacing-unit:        8px;
+  --spacing-unit:        0.5rem;
+
+  /* ── Container sizes (required for max-w-* in Tailwind v4) ── */
+  --container-sm:   40rem;   /*  640px */
+  --container-md:   48rem;   /*  768px */
+  --container-lg:   64rem;   /* 1024px */
+  --container-xl:   80rem;   /* 1280px */
+  --container-2xl:  96rem;   /* 1536px */
+  --container-3xl: 112rem;   /* 1792px */
+  --container-4xl: 128rem;   /* 2048px */
+  --container-5xl:  64rem;   /* 1024px */
+  --container-6xl:  72rem;   /* 1152px */
+  --container-7xl:  80rem;   /* 1280px */
 }
 
-/* ── Reset ── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: var(--font-label);
+@layer base {
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-label);
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -100,7 +122,7 @@ html, body {
     letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--color-accent);
-    text-shadow: 0 0 10px var(--color-accent-glow);
+    text-shadow: 0 0 0.625rem var(--color-accent-glow);
   }
 
   /* Metadata / timestamp / smallest text */
@@ -131,9 +153,9 @@ html, body {
     letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--color-accent);
-    text-shadow: 0 0 10px rgba(214, 82, 76, 0.4);
+    text-shadow: 0 0 0.625rem var(--color-accent-glow);
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 0.0625rem solid var(--color-border);
     margin-bottom: 2rem;
   }
 
@@ -152,41 +174,41 @@ html, body {
 
   /* Neon bloom on accent-coloured text */
   .glow-accent {
-    text-shadow: 0 0 10px var(--color-accent-glow);
+    text-shadow: 0 0 0.625rem var(--color-accent-glow);
   }
 
   /* VHS chromatic aberration — fg text */
   .glow-fg {
     text-shadow:
-      2px 0 rgba(214, 82, 76, 0.6),
-      -2px 0 rgba(0, 200, 255, 0.25),
-      0 0 20px rgba(220, 220, 220, 0.12),
-      0 0 60px rgba(220, 220, 220, 0.04);
+      0.125rem 0 var(--color-accent-glow),
+      -0.125rem 0 var(--color-cyan-dim),
+      0 0 1.25rem var(--color-fg-muted),
+      0 0 3.75rem rgba(220, 220, 220, 0.04);
   }
 
   /* ── Surfaces ────────────────────────────────────────────────────────────  */
 
   .pg-surface {
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    border: 0.0625rem solid var(--color-border);
   }
 
   .pg-surface-low {
     background: var(--color-surface-low);
-    border: 1px solid var(--color-border);
+    border: 0.0625rem solid var(--color-border);
   }
 
   /* ── Cursor ──────────────────────────────────────────────────────────────  */
 
   .pg-cursor {
     display: inline-block;
-    width: 8px;
+    width: 0.5rem;
     height: 1em;
     background: var(--color-accent);
-    box-shadow: 0 0 10px rgba(214, 82, 76, 0.7);
+    box-shadow: 0 0 0.625rem var(--color-accent-strong);
     animation: pg-blink 1.2s step-end infinite;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 0.25rem;
   }
 
   @keyframes pg-blink {
@@ -216,19 +238,19 @@ html, body {
   }
 
   .btn--primary:hover {
-    box-shadow: 0 0 15px var(--color-accent);
+    box-shadow: 0 0 0.9375rem var(--color-accent);
   }
 
   .btn--ghost {
     background: transparent;
     color: var(--color-accent);
-    border: 1px solid rgba(214, 82, 76, 0.3);
+    border: 0.0625rem solid var(--color-accent-border);
     transition: background 0.15s, box-shadow 0.15s;
   }
 
   .btn--ghost:hover {
-    background: rgba(214, 82, 76, 0.1);
-    box-shadow: 0 0 15px rgba(214, 82, 76, 0.2);
+    background: var(--color-accent-dim);
+    box-shadow: 0 0 0.9375rem var(--color-accent-dim);
   }
 
   /* ── Badge ────────────────────────────────────────────────────────────────  */
@@ -241,7 +263,7 @@ html, body {
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--color-accent);
-    border: 1px solid rgba(214, 82, 76, 0.4);
+    border: 0.0625rem solid var(--color-accent-glow);
     padding: 0.2rem 0.6rem;
   }
 
@@ -255,7 +277,7 @@ html, body {
   .pg-input {
     background: var(--color-bg);
     border: none;
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 0.0625rem solid var(--color-accent);
     color: var(--color-fg);
     font-family: var(--font-label);
     font-size: 0.875rem;
@@ -274,7 +296,7 @@ html, body {
 
   .pg-divider {
     width: 100%;
-    height: 1px;
+    height: 0.0625rem;
     background: var(--color-border);
   }
 

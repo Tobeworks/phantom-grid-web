@@ -44,18 +44,18 @@ const {
 <style>
   .terminal {
     background: var(--color-bg);
-    border: 1px solid rgba(214, 82, 76, 0.25);
+    border: 0.0625rem solid var(--color-accent-border);
     box-shadow:
-      0 0 30px rgba(214, 82, 76, 0.08),
-      inset 0 0 60px rgba(0, 0, 0, 0.4);
-    font-family: 'Courier New', 'Monaco', monospace;
+      0 0 1.875rem var(--color-accent-subtle),
+      inset 0 0 3.75rem rgba(0, 0, 0, 0.4);
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     overflow: hidden;
   }
 
   .terminal__header {
     background: var(--color-surface-low);
-    border-bottom: 1px solid rgba(214, 82, 76, 0.15);
+    border-bottom: 0.0625rem solid var(--color-accent-dim);
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
@@ -64,20 +64,20 @@ const {
 
   .terminal__dots {
     display: flex;
-    gap: 5px;
+    gap: 0.3125rem;
   }
 
   .terminal__dot {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 50%;
-    background: rgba(214, 82, 76, 0.3);
-    box-shadow: 0 0 6px rgba(214, 82, 76, 0.3);
+    background: var(--color-accent-border);
+    box-shadow: 0 0 0.375rem var(--color-accent-border);
   }
 
   .terminal__dot--active {
-    background: rgba(214, 82, 76, 0.7);
-    box-shadow: 0 0 8px rgba(214, 82, 76, 0.6);
+    background: var(--color-accent-strong);
+    box-shadow: 0 0 0.5rem var(--color-accent-glow);
   }
 
   .terminal__title {
@@ -96,13 +96,13 @@ const {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    min-height: 200px;
+    min-height: 12.5rem;
     background-image: repeating-linear-gradient(
       to bottom,
-      transparent 0px,
-      transparent 2px,
-      rgba(0, 0, 0, 0.06) 2px,
-      rgba(0, 0, 0, 0.06) 4px
+      transparent 0rem,
+      transparent 0.125rem,
+      rgba(0, 0, 0, 0.06) 0.125rem,
+      rgba(0, 0, 0, 0.06) 0.25rem
     );
   }
 
@@ -115,14 +115,14 @@ const {
 
   .terminal__prompt {
     color: var(--color-accent);
-    text-shadow: 0 0 8px rgba(214, 82, 76, 0.6);
+    text-shadow: 0 0 0.5rem var(--color-accent-glow);
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   .terminal__cmd {
     color: var(--color-fg);
-    text-shadow: 0 0 6px rgba(220, 220, 220, 0.15);
+    text-shadow: 0 0 0.375rem var(--color-fg-muted);
   }
 
   .terminal__output {
@@ -133,10 +133,10 @@ const {
 
   .terminal__cursor {
     display: inline-block;
-    width: 8px;
+    width: 0.5rem;
     height: 1rem;
     background: var(--color-accent);
-    box-shadow: 0 0 10px rgba(214, 82, 76, 0.8);
+    box-shadow: 0 0 0.625rem var(--color-accent-strong);
     animation: blink 1.2s step-end infinite;
     vertical-align: middle;
   }

@@ -2,107 +2,90 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LedArray from "../components/LedArray.astro";
 import ReleaseList from "../components/ReleaseList.astro";
+import TerminalRain from "../components/TerminalRain.astro";
 import pkg from "../../package.json";
 ---
 
 <BaseLayout>
+
   <!-- ── Hero ── -->
-  <div class="flex flex-col items-center justify-center min-h-screen p-8">
-    <div class="home__led-wrapper">
-      <LedArray code="PG-001" />
-    </div>
+  <div class="relative flex flex-col items-center justify-center min-h-screen p-8">
+    <TerminalRain />
 
-    <h1 class="home__wordmark">Phantom Grid</h1>
-    <p class="home__tagline">Transmitting from Cyberspace_</p>
+    <div class="relative z-[1] flex flex-col items-center">
+      <div class="mb-16">
+        <LedArray code="PG-001" />
+      </div>
 
-    <div class="home__links">
-      <a
-        class="home__icon-link"
-        href="https://github.com/Tobeworks/phantom-grid-os"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub repository">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-          <path fill-rule="evenodd" d="M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z" clip-rule="evenodd"></path>
-        </svg>
-      </a>
-      <a
-        class="home__icon-link"
-        href="https://phantomgrid.bandcamp.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Bandcamp">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/>
-        </svg>
-      </a>
-    </div>
+      <h1 class="home__wordmark">Phantom Grid</h1>
 
-    <div class="home__status">
-      SIGNAL INCOMING <span class="pg-cursor"></span>
+      <p class="home__tagline">Transmitting from Cyberspace_</p>
+
+      <div class="flex gap-6 mb-12">
+        <a
+          class="home__icon-link"
+          href="https://github.com/Tobeworks/phantom-grid-os"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub repository">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z" clip-rule="evenodd"></path>
+          </svg>
+        </a>
+        <a
+          class="home__icon-link"
+          href="https://phantomgrid.bandcamp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Bandcamp">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2 text-[0.75rem] tracking-[0.2em] text-fg-dim uppercase">
+        SIGNAL INCOMING <span class="pg-cursor"></span>
+      </div>
     </div>
   </div>
 
   <!-- ── Manifest ── -->
-  <section class="manifest">
-    <div class="manifest__inner">
+  <section class="border-y border-border bg-surface-low">
+    <div class="max-w-7xl mx-auto px-8 py-20 flex flex-col gap-12">
 
-      <header class="manifest__header">
-        <span class="text-eyebrow manifest__eyebrow">// SIGNAL_ORIGIN</span>
-        <h2 class="manifest__headline">
+      <header class="flex flex-col gap-4">
+        <span class="text-eyebrow">// SIGNAL_ORIGIN</span>
+        <h2 class="home__headline">
           Dark machines.<br />
-          Synthetic textures.<br />
           Raw signal.
         </h2>
       </header>
 
-      <p class="manifest__body">
-        Phantom Grid is an independent electronic music label.
-        No major. No algorithm. Just artists, machines, and the spaces between.
-        Each release is a transmission — deliberate, limited, built to last.
+      <p class="font-label font-semibold uppercase text-fg-dim leading-[1.8] max-w-[38.75rem] text-[clamp(0.85rem,1.5vw,1rem)] tracking-[0.06em]">
+        Phantom Grid is an independent electronic music label. No major. No
+        algorithm. Just artists, machines, and the spaces between. Each release
+        is a transmission — deliberate, limited, built to last.
       </p>
 
-      <div class="manifest__grid">
-        <div class="manifest__node">
-          <span class="manifest__node-num text-micro">01</span>
-          <h3 class="manifest__node-title">THE SOUND</h3>
-          <p class="manifest__node-body">
-            Electronic music rooted in texture and tension.
-            Industrial pulse, ambient drift, synthetic rhythm —
-            built for headphones and club systems alike.
-          </p>
-        </div>
-        <div class="manifest__node">
-          <span class="manifest__node-num text-micro">02</span>
-          <h3 class="manifest__node-title">INDEPENDENT</h3>
-          <p class="manifest__node-body">
-            No label politics. No release windows.
-            Artists ship when the work is ready —
-            direct from the studio to the listener.
-          </p>
-        </div>
-        <div class="manifest__node">
-          <span class="manifest__node-num text-micro">03</span>
-          <h3 class="manifest__node-title">ON WAX & WIRE</h3>
-          <p class="manifest__node-body">
-            High-quality audio, buy and stream on Bandcamp.
-            Selected releases on vinyl soon.
-          </p>
-        </div>
-        <div class="manifest__node">
-          <span class="manifest__node-num text-micro">04</span>
-          <h3 class="manifest__node-title">TRANSPARENT</h3>
-          <p class="manifest__node-body">
-            The label runs on an open OS Repo — brand,
-            data, and workflow visible to anyone.
-            Signal over hype.
-          </p>
-        </div>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(13.75rem,1fr))] border border-border">
+        {[
+          { n: '01', title: 'THE SOUND',    body: 'Electronic music rooted in texture and tension. Industrial pulse, ambient drift, synthetic rhythm — built for headphones and club systems alike.' },
+          { n: '02', title: 'INDEPENDENT',  body: 'No label politics. No release windows. Artists ship when the work is ready — direct from the studio to the listener.' },
+          { n: '03', title: 'ON WAX & WIRE', body: 'High-quality audio, buy and stream on Bandcamp. Selected releases on vinyl soon.' },
+          { n: '04', title: 'TRANSPARENT',  body: 'The label runs on an open OS Repo — brand, data, and workflow visible to anyone. Signal over hype.' },
+        ].map(({ n, title, body }) => (
+          <div class="manifest__node flex flex-col gap-2 p-6 border-r border-b border-border relative">
+            <span class="text-micro text-accent">{n}</span>
+            <h3 class="font-label font-bold uppercase text-fg text-[0.9rem] tracking-[0.18em]">{title}</h3>
+            <p class="font-label font-semibold uppercase text-fg-dim text-[0.75rem] tracking-[0.06em] leading-[1.7]">{body}</p>
+          </div>
+        ))}
       </div>
 
-      <div class="manifest__footer-line">
+      <div class="flex items-center gap-6">
         <span class="pg-divider"></span>
-        <span class="text-micro manifest__footer-text">EST. 2026 — TRANSMITTING FROM CYBERSPACE</span>
+        <span class="text-micro whitespace-nowrap shrink-0">EST. 2026 — TRANSMITTING FROM CYBERSPACE</span>
         <span class="pg-divider"></span>
       </div>
 
@@ -110,26 +93,30 @@ import pkg from "../../package.json";
   </section>
 
   <!-- ── Releases ── -->
-  <section class="home__releases">
-    <ReleaseList />
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-8">
+      <ReleaseList />
+    </div>
   </section>
 
-  <footer class="home__footer">
+  <footer class="text-center py-12 px-4 text-[0.65rem] tracking-[0.2em] text-fg-muted uppercase border-t border-border">
     EST. 2026 — CYBERSPACE —
-    <a href="https://phantomgrid.bandcamp.com/" target="_blank" rel="noopener noreferrer" class="home__footer-link">BANDCAMP</a>
+    <a href="https://phantomgrid.bandcamp.com/" target="_blank" rel="noopener noreferrer"
+       class="text-fg-faint no-underline transition-colors duration-200 hover:text-accent">
+      BANDCAMP
+    </a>
     — v{pkg.version}
   </footer>
+
 </BaseLayout>
 
 <style>
-  /* ── LED wrapper ── */
-  .home__led-wrapper {
-    margin-bottom: 4rem;
-  }
+  /* Scoped CSS — only for animations and pseudo-elements that Tailwind can't handle */
 
-  /* ── Wordmark ── */
+  /* ── Wordmark: VHS flicker animation ── */
   .home__wordmark {
     font-size: clamp(2.5rem, 8vw, 5rem);
+    font-family: var(--font-label);
     font-weight: 700;
     letter-spacing: 0.25em;
     color: var(--color-fg);
@@ -142,101 +129,53 @@ import pkg from "../../package.json";
   @keyframes vhs-flicker {
     0%, 88%, 91%, 96% {
       text-shadow:
-        2px 0 rgba(214, 82, 76, 0.6),
-        -2px 0 rgba(0, 200, 255, 0.25),
-        0 0 20px rgba(220, 220, 220, 0.12),
-        0 0 60px rgba(220, 220, 220, 0.04);
+        0.125rem 0 var(--color-accent-glow),
+        -0.125rem 0 var(--color-cyan-dim),
+        0 0 1.25rem var(--color-fg-muted),
+        0 0 3.75rem rgba(220, 220, 220, 0.04);
       opacity: 1;
       transform: none;
     }
     89% {
-      text-shadow: 5px 0 rgba(214, 82, 76, 0.9), -5px 0 rgba(0, 200, 255, 0.5);
+      text-shadow: 0.3125rem 0 var(--color-accent), -0.3125rem 0 var(--color-cyan);
       opacity: 0.75;
-      transform: translateX(4px);
+      transform: translateX(0.25rem);
     }
     90% {
-      text-shadow: -4px 0 rgba(214, 82, 76, 0.8), 4px 0 rgba(0, 200, 255, 0.4);
+      text-shadow: -0.25rem 0 var(--color-accent-strong), 0.25rem 0 var(--color-cyan-dim);
       opacity: 0.85;
-      transform: translateX(-3px);
+      transform: translateX(-0.1875rem);
     }
-    97% {
-      opacity: 0.6;
-      transform: translateX(2px);
-    }
-    97.5%, 100% {
-      opacity: 1;
-      transform: none;
-    }
+    97% { opacity: 0.6; transform: translateX(0.125rem); }
+    97.5%, 100% { opacity: 1; transform: none; }
   }
 
-  /* ── Tagline ── */
+  /* ── Tagline: clamp size + text-shadow ── */
   .home__tagline {
     font-size: clamp(0.8rem, 2vw, 1rem);
+    font-family: var(--font-label);
     font-weight: 600;
     letter-spacing: 0.15em;
     color: var(--color-accent);
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(214, 82, 76, 0.5);
+    text-shadow: 0 0 0.625rem var(--color-accent-glow);
     margin-bottom: 2rem;
   }
 
-  /* ── Icon links ── */
-  .home__links {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
+  /* ── Icon links: filter drop-shadow on hover ── */
   .home__icon-link {
     display: flex;
-    color: rgba(220, 220, 220, 0.3);
+    color: var(--color-fg-faint);
     text-decoration: none;
     transition: color 0.2s, filter 0.2s;
   }
-
   .home__icon-link:hover {
     color: var(--color-fg);
-    filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.4));
+    filter: drop-shadow(0 0 0.5rem var(--color-fg-dim));
   }
 
-  /* ── Status bar ── */
-  .home__status {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: rgba(220, 220, 220, 0.4);
-    text-transform: uppercase;
-  }
-
-  /* ── Manifest ── */
-  .manifest {
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-surface-low);
-  }
-
-  .manifest__inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .manifest__header {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .manifest__eyebrow {
-    color: var(--color-accent);
-  }
-
-  .manifest__headline {
+  /* ── Headline: clamp size ── */
+  .home__headline {
     font-family: var(--font-label);
     font-size: clamp(1.6rem, 4vw, 2.8rem);
     font-weight: 700;
@@ -244,114 +183,20 @@ import pkg from "../../package.json";
     text-transform: uppercase;
     color: var(--color-fg);
     line-height: 1.2;
-    max-width: 700px;
+    max-width: 43.75rem;
   }
 
-  .manifest__body {
-    font-family: var(--font-label);
-    font-size: clamp(0.85rem, 1.5vw, 1rem);
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--color-fg-dim);
-    line-height: 1.8;
-    max-width: 620px;
-    text-transform: uppercase;
-  }
-
-  .manifest__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0;
-    border: 1px solid var(--color-border);
-  }
-
-  .manifest__node {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    padding: 1.5rem;
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    position: relative;
-  }
-
+  /* ── Manifest node: ::before hover accent line ── */
   .manifest__node::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
+    height: 0.125rem;
     background: var(--color-accent);
     opacity: 0;
     transition: opacity 0.25s;
   }
-
   .manifest__node:hover::before {
     opacity: 1;
-  }
-
-  .manifest__node-num {
-    color: var(--color-accent);
-  }
-
-  .manifest__node-title {
-    font-family: var(--font-label);
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-fg);
-  }
-
-  .manifest__node-body {
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-fg-dim);
-    line-height: 1.7;
-  }
-
-  .manifest__footer-line {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .manifest__footer-line .pg-divider {
-    flex: 1;
-  }
-
-  .manifest__footer-text {
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  /* ── Releases section ── */
-  .home__releases {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-  }
-
-  /* ── Footer ── */
-  .home__footer {
-    text-align: center;
-    padding: 3rem 1rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: rgba(220, 220, 220, 0.2);
-    text-transform: uppercase;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .home__footer-link {
-    color: rgba(220, 220, 220, 0.35);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .home__footer-link:hover {
-    color: var(--color-accent);
   }
 </style>

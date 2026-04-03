@@ -16,8 +16,8 @@ const pattern = code.split('').flatMap(char => {
 });
 
 const uid = `led-${Math.random().toString(36).slice(2, 9)}`;
-const dotSize = size === 'sm' ? '7px'  : '20px';
-const gapSize = size === 'sm' ? '4px'  : '10px';
+const dotSize = size === 'sm' ? '0.4375rem' : '1.25rem';
+const gapSize = size === 'sm' ? '0.25rem'   : '0.625rem';
 ---
 
 <div
@@ -47,21 +47,21 @@ const gapSize = size === 'sm' ? '4px'  : '10px';
 <style>
   .led-array {
     display: grid;
-    grid-template-columns: repeat(8, var(--led-size, 20px));
-    gap: var(--led-gap, 10px);
+    grid-template-columns: repeat(8, var(--led-size, 1.25rem));
+    gap: var(--led-gap, 0.625rem);
   }
 
   .led-array__dot {
-    width: var(--led-size, 20px);
-    height: var(--led-size, 20px);
+    width: var(--led-size, 1.25rem);
+    height: var(--led-size, 1.25rem);
     border-radius: 50%;
-    border: 1.5px solid var(--color-accent);
+    border: 0.09375rem solid var(--color-accent);
     opacity: 0.18;
     transition: opacity 0.3s step-end, box-shadow 0.3s step-end;
   }
 
   .led-array__dot--on {
     opacity: 1;
-    box-shadow: 0 0 8px rgba(214, 82, 76, 0.7);
+    box-shadow: 0 0 0.5rem var(--color-accent-strong);
   }
 </style>
