@@ -27,11 +27,19 @@ const playerTracks = tracks.map((t) => ({
   title:  t.title,
   url:    t.url,
 }));
+
+const seoTitle       = `${artist} — ${title} | PHANTOM GRID`;
+const seoDescription = `${catalog}${genre ? ` · ${genre}` : ''}${year ? ` · ${year}` : ''} · ${tracks.length} track${tracks.length !== 1 ? 's' : ''}. Independent electronic music on Phantom Grid.`;
+const seoImage       = artwork?.['1500']?.jpg || cover;
+const seoUrl         = new URL(`releases/${slug}`, Astro.site).href;
 ---
 
 <BaseLayout
-  title={`${artist} — ${title} | PHANTOM GRID`}
-  description={`${catalog} · ${format}${year ? ` · ${year}` : ''} — Phantom Grid`}
+  title={seoTitle}
+  description={seoDescription}
+  image={seoImage}
+  canonicalUrl={seoUrl}
+  type="music.album"
 >
   <div class="max-w-7xl mx-auto px-8 py-8 pb-24 min-h-screen">
 

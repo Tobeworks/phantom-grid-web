@@ -6,7 +6,11 @@ import TerminalRain from "../components/TerminalRain.astro";
 import pkg from "../../package.json";
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="PHANTOM GRID"
+  description="Independent electronic music label. Industrial pulse, ambient drift, synthetic rhythm — built for headphones and club systems. Buy direct on Bandcamp."
+  canonicalUrl={new URL('', Astro.site).href}
+>
 
   <!-- ── Hero ── -->
   <div class="relative flex flex-col items-center justify-center min-h-screen p-8">
