@@ -1,4 +1,4 @@
-const PB_URL = import.meta.env.POCKETBASE_URL ?? 'http://pocketbase:8090';
+const PB_URL = process.env.POCKETBASE_URL ?? import.meta.env.POCKETBASE_URL ?? 'http://pocketbase:8090';
 
 export interface PromoRecord {
   id: string;
@@ -21,7 +21,8 @@ export async function getPromoByToken(token: string): Promise<PromoRecord | null
     if (!res.ok) return null;
     const data = await res.json();
     return (data.items?.[0] as PromoRecord) ?? null;
-  } catch {
+  } catch (err) {
+    console.error('[pocketbase] getPromoByToken error:', err);
     return null;
   }
 }
