@@ -21,8 +21,7 @@ export async function getPromoByToken(token: string): Promise<PromoRecord | null
     if (!res.ok) return null;
     const data = await res.json();
     return (data.items?.[0] as PromoRecord) ?? null;
-  } catch (err) {
-    console.error('[pocketbase] getPromoByToken error:', err);
+  } catch {
     return null;
   }
 }

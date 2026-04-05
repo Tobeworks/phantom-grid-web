@@ -15,7 +15,6 @@ if (!token) return Astro.redirect('/404');
 
 // Validate promo
 const promo = await getPromoByToken(token);
-console.log('[promo] slug:', slug, 'token:', token, 'promo:', JSON.stringify(promo));
 
 // Guard: invalid token or wrong release
 if (!promo || promo.release_slug !== slug) {
