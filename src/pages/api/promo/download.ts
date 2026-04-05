@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIContext } from 'astro';
 import { getPromoByToken, logDownload } from '../../../lib/pocketbase';
 import releasesData from '../../../../phantom-grid-os/data/releases.json';
-import { zipSync } from 'fflate';
+import { Zip, ZipPassThrough } from 'fflate';
 
 export const GET = async ({ request, url }: APIContext) => {
   const token      = url.searchParams.get('t');
@@ -56,45 +56,60 @@ export const GET = async ({ request, url }: APIContext) => {
     });
   }
 
-  // ── ZIP: all tracks ────────────────────────────────────────────────────────
+  // ── ZIP: all tracks — streaming, one track at a time ─────────────────────
   const zipLabel    = quality === '320' ? '320k' : '128k';
   const artistSlug  = release.artist.toLowerCase().replace(/\s+/g, '_');
   const zipFilename = `${release.catalog.toLowerCase()}_${artistSlug}_${zipLabel}.zip`;
 
-  const fetched = await Promise.all(
-    release.tracks.map(async (track) => {
-      const cdnUrl = quality === '320' ? track.url_320 : track.url;
-      if (!cdnUrl) return null;
-      try {
-        const res = await fetch(cdnUrl);
-        if (!res.ok) return null;
-        const buf = await res.arrayBuffer();
-        const trackLabel = track.title.replace(/^.*?\s{2,}/, '').trim() || track.title;
-        const filename   = `${String(track.number).padStart(2, '0')}_${trackLabel.replace(/[^a-zA-Z0-9_\-]/g, '_').toLowerCase()}.mp3`;
-        return { filename, data: new Uint8Array(buf) };
-      } catch {
-        return null;
-      }
-    })
-  );
-
-  const validTracks = fetched.filter(Boolean) as { filename: string; data: Uint8Array }[];
-  if (validTracks.length === 0) return new Response('No audio files available', { status: 404 });
-
-  const zipInput: Record<string, Uint8Array> = {};
-  for (const t of validTracks) zipInput[t.filename] = t.data;
-
-  const zipped = zipSync(zipInput, { level: 0 }); // level 0 = store, MP3s don't compress
-
   logDownload({ promo: promo.id, quality, ip, user_agent });
 
-  return new Response(zipped, {
+  const tracks = release.tracks;
+
+  const stream = new ReadableStream({
+    async start(controller) {
+      const zip = new Zip((err, chunk, final) => {
+        if (err) { controller.error(err); return; }
+        controller.enqueue(chunk);
+        if (final) controller.close();
+      });
+
+      for (const track of tracks) {
+        const cdnUrl = quality === '320' ? track.url_320 : track.url;
+        if (!cdnUrl) continue;
+
+        let cdnRes: Response;
+        try {
+          cdnRes = await fetch(cdnUrl);
+          if (!cdnRes.ok || !cdnRes.body) continue;
+        } catch {
+          continue;
+        }
+
+        const trackLabel = track.title.replace(/^.*?\s{2,}/, '').trim() || track.title;
+        const filename   = `${String(track.number).padStart(2, '0')}_${trackLabel.replace(/[^a-zA-Z0-9_\-]/g, '_').toLowerCase()}.mp3`;
+
+        const file = new ZipPassThrough(filename);
+        zip.add(file);
+
+        const reader = cdnRes.body.getReader();
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) { file.push(new Uint8Array(0), true); break; }
+          file.push(value!);
+        }
+      }
+
+      zip.end();
+    },
+  });
+
+  return new Response(stream, {
     status: 200,
     headers: {
       'content-type':        'application/zip',
       'content-disposition': `attachment; filename="${zipFilename}"`,
-      'content-length':      String(zipped.byteLength),
       'cache-control':       'private, no-store',
+      'x-content-type-options': 'nosniff',
     },
   });
 };
