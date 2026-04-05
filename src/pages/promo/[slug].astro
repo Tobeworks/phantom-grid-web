@@ -57,41 +57,41 @@ const feedbacks = await getFeedbackForRelease(slug!);
   title={`${artist} — ${title} // PROMO`}
   description="Restricted promo listening page — Phantom Grid."
 >
-  <div class="max-w-7xl mx-auto px-8 py-8 pb-24 min-h-screen">
+  <div class="max-w-7xl mx-auto px-3 sm:px-8 py-6 sm:py-8 pb-24 min-h-screen">
     <div class="promo__box">
 
       <!-- Box header -->
-      <div class="promo__box-header flex items-center justify-between px-6 py-3 border-b border-border">
-        <span class="text-eyebrow text-accent tracking-[0.35em]">RESTRICTED // PROMO USE ONLY</span>
-        <span class="text-micro text-fg-muted">PHANTOM GRID</span>
+      <div class="promo__box-header flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border">
+        <span class="text-eyebrow text-accent tracking-[0.2em] sm:tracking-[0.35em] text-[0.6rem] sm:text-[0.65rem]">RESTRICTED // PROMO USE ONLY</span>
+        <span class="text-micro text-fg-muted hidden sm:block">PHANTOM GRID</span>
       </div>
 
-      <div class="px-6 py-8 flex flex-col gap-8">
+      <div class="px-3 sm:px-6 py-6 sm:py-8 flex flex-col gap-6 sm:gap-8">
 
     <!-- Release header -->
-    <div class="promo__section flex gap-8 items-start">
+    <div class="promo__section flex flex-col sm:flex-row gap-6 sm:gap-8 items-start">
       {artJpg && (
-        <picture class="flex-shrink-0">
+        <picture class="flex-shrink-0 self-center sm:self-start">
           <source srcset={artWebp} type="image/webp" />
           <img
             src={artJpg}
             alt={`${artist} — ${title}`}
             width="160"
             height="160"
-            class="promo__cover block border border-border w-40 h-40 object-cover"
+            class="promo__cover block border border-border w-32 h-32 sm:w-40 sm:h-40 object-cover"
           />
         </picture>
       )}
-      <div class="flex flex-col gap-2 pt-1">
+      <div class="flex flex-col gap-2 pt-0 sm:pt-1 w-full">
         <div class="flex gap-2 flex-wrap">
           <span class="badge">{catalog}</span>
           {format && <span class="badge badge--muted">{format}</span>}
           {genre  && <span class="badge badge--muted">{genre}</span>}
           {year   && <span class="badge badge--muted">{year}</span>}
         </div>
-        <h1 class="font-label font-bold uppercase text-fg text-[1.6rem] tracking-[0.15em] leading-tight mt-1">{title}</h1>
+        <h1 class="font-label font-bold uppercase text-fg text-[1.25rem] sm:text-[1.6rem] tracking-[0.1em] sm:tracking-[0.15em] leading-tight mt-1">{title}</h1>
         <p class="text-micro">{artist}</p>
-        <p class="text-micro text-accent tracking-[0.3em]">FOR: {promo.recipient_name.toUpperCase()}</p>
+        <p class="text-micro text-accent tracking-[0.25em] sm:tracking-[0.3em]">FOR: {promo.recipient_name.toUpperCase()}</p>
         {promo.expires_at && (
           <p class="text-micro text-fg-muted tracking-[0.2em]">
             VALID UNTIL: {new Date(promo.expires_at).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })}
@@ -110,10 +110,10 @@ const feedbacks = await getFeedbackForRelease(slug!);
       <p class="pg-section-title">// DOWNLOAD</p>
 
       <!-- ZIP all tracks -->
-      <div class="flex gap-3 mb-6">
+      <div class="flex flex-col sm:flex-row gap-3 mb-6">
         <a
           href={`/api/promo/download?t=${token}&q=128`}
-          class="btn btn--ghost"
+          class="btn btn--ghost w-full sm:w-auto text-center"
           data-dl
           download
         >
@@ -121,7 +121,7 @@ const feedbacks = await getFeedbackForRelease(slug!);
         </a>
         <a
           href={`/api/promo/download?t=${token}&q=320`}
-          class="btn btn--primary"
+          class="btn btn--primary w-full sm:w-auto text-center"
           data-dl
           download
         >
@@ -133,14 +133,14 @@ const feedbacks = await getFeedbackForRelease(slug!);
         {tracks.map((track) => {
           const label = track.title.replace(/^.*?\s{2,}/, '').trim() || track.title;
           return (
-            <li class="promo__track-row">
+            <li class="promo__track-row flex-wrap">
               <span class="text-micro text-fg-muted w-6 flex-shrink-0">
                 {String(track.number).padStart(2, '0')}
               </span>
-              <span class="font-label font-semibold uppercase text-fg-dim text-[0.78rem] tracking-[0.1em] flex-1 truncate">
+              <span class="font-label font-semibold uppercase text-fg-dim text-[0.78rem] tracking-[0.1em] flex-1 min-w-0 truncate">
                 {label}
               </span>
-              <div class="flex gap-2 flex-shrink-0">
+              <div class="flex gap-2 flex-shrink-0 ml-auto sm:ml-0">
                 <a
                   href={`/api/promo/download?t=${token}&q=128&track=${track.number}`}
                   class="btn btn--ghost text-[0.6rem] py-1 px-3"
@@ -268,8 +268,14 @@ const feedbacks = await getFeedbackForRelease(slug!);
 
   .promo__section {
     border: 0.0625rem solid var(--color-border);
-    padding: 1.5rem;
+    padding: 1rem;
     background: var(--color-surface);
+  }
+
+  @media (min-width: 640px) {
+    .promo__section {
+      padding: 1.5rem;
+    }
   }
 
   /* AudioPlayer already has its own border — suppress when inside promo__section */
