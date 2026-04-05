@@ -92,6 +92,11 @@ const feedbacks = await getFeedbackForRelease(slug!);
         <h1 class="font-label font-bold uppercase text-fg text-[1.6rem] tracking-[0.15em] leading-tight mt-1">{title}</h1>
         <p class="text-micro">{artist}</p>
         <p class="text-micro text-accent tracking-[0.3em]">FOR: {promo.recipient_name.toUpperCase()}</p>
+        {promo.expires_at && (
+          <p class="text-micro text-fg-muted tracking-[0.2em]">
+            VALID UNTIL: {new Date(promo.expires_at).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+          </p>
+        )}
       </div>
     </div>
 
