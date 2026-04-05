@@ -62,8 +62,8 @@ const feedbacks = await getFeedbackForRelease(slug!);
 
       <!-- Box header -->
       <div class="promo__box-header flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border">
-        <span class="text-eyebrow text-accent tracking-[0.2em] sm:tracking-[0.35em] text-[0.6rem] sm:text-[0.65rem]">RESTRICTED // PROMO USE ONLY</span>
-        <span class="text-micro text-fg-muted hidden sm:block">PHANTOM GRID</span>
+        <span class="text-eyebrow text-accent tracking-[0.2em] sm:tracking-[0.35em]">RESTRICTED // PROMO USE ONLY</span>
+        <span class="text-micro hidden sm:block">PHANTOM GRID</span>
       </div>
 
       <div class="px-3 sm:px-6 py-6 sm:py-8 flex flex-col gap-6 sm:gap-8">
@@ -89,11 +89,11 @@ const feedbacks = await getFeedbackForRelease(slug!);
           {genre  && <span class="badge badge--muted">{genre}</span>}
           {year   && <span class="badge badge--muted">{year}</span>}
         </div>
-        <h1 class="font-label font-bold uppercase text-fg text-[1.25rem] sm:text-[1.6rem] tracking-[0.1em] sm:tracking-[0.15em] leading-tight mt-1">{title}</h1>
-        <p class="text-micro">{artist}</p>
+        <h1 class="font-label font-bold uppercase text-fg text-[1.4rem] sm:text-[1.8rem] tracking-[0.1em] sm:tracking-[0.15em] leading-tight mt-1">{title}</h1>
+        <p class="text-micro text-fg-dim">{artist}</p>
         <p class="text-micro text-accent tracking-[0.25em] sm:tracking-[0.3em]">FOR: {promo.recipient_name.toUpperCase()}</p>
         {promo.expires_at && (
-          <p class="text-micro text-fg-muted tracking-[0.2em]">
+          <p class="text-micro text-fg-dim tracking-[0.2em]">
             VALID UNTIL: {new Date(promo.expires_at).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })}
           </p>
         )}
@@ -134,16 +134,16 @@ const feedbacks = await getFeedbackForRelease(slug!);
           const label = track.title.replace(/^.*?\s{2,}/, '').trim() || track.title;
           return (
             <li class="promo__track-row flex-wrap">
-              <span class="text-micro text-fg-muted w-6 flex-shrink-0">
+              <span class="text-micro text-fg-dim w-6 flex-shrink-0">
                 {String(track.number).padStart(2, '0')}
               </span>
-              <span class="font-label font-semibold uppercase text-fg-dim text-[0.78rem] tracking-[0.1em] flex-1 min-w-0 truncate">
+              <span class="font-label font-semibold uppercase text-fg text-[0.9rem] tracking-[0.1em] flex-1 min-w-0 truncate">
                 {label}
               </span>
               <div class="flex gap-2 flex-shrink-0 ml-auto sm:ml-0">
                 <a
                   href={`/api/promo/download?t=${token}&q=128&track=${track.number}`}
-                  class="btn btn--ghost text-[0.6rem] py-1 px-3"
+                  class="btn btn--ghost py-1 px-3"
                   data-dl
                   download
                 >
@@ -151,7 +151,7 @@ const feedbacks = await getFeedbackForRelease(slug!);
                 </a>
                 <a
                   href={`/api/promo/download?t=${token}&q=320&track=${track.number}`}
-                  class="btn btn--primary text-[0.6rem] py-1 px-3"
+                  class="btn btn--primary py-1 px-3"
                   data-dl
                   download
                 >
@@ -211,14 +211,14 @@ const feedbacks = await getFeedbackForRelease(slug!);
           <button type="submit" class="btn btn--primary">
             TRANSMIT FEEDBACK
           </button>
-          <span id="fb-status" class="text-micro text-fg-muted" aria-live="polite"></span>
+          <span id="fb-status" class="text-micro text-fg-dim" aria-live="polite"></span>
         </div>
       </form>
 
       <!-- Success state -->
       <div id="promo-feedback-success" class="promo__success hidden">
         <span class="text-eyebrow text-accent">// TRANSMISSION COMPLETE</span>
-        <p class="text-micro mt-3 text-fg-dim">FEEDBACK RECEIVED. PHANTOM GRID THANKS YOU.</p>
+        <p class="text-micro mt-3 text-fg">FEEDBACK RECEIVED. PHANTOM GRID THANKS YOU.</p>
         <span class="pg-cursor mt-2"></span>
       </div>
     </div>
@@ -231,12 +231,12 @@ const feedbacks = await getFeedbackForRelease(slug!);
           {feedbacks.map((fb) => (
             <li class="promo__feedback-item">
               <div class="flex items-baseline justify-between gap-4 mb-2">
-                <span class="font-label font-bold uppercase text-fg text-[0.85rem] tracking-[0.12em]">{fb.name}</span>
-                <span class="text-micro text-fg-muted flex-shrink-0">
+                <span class="font-label font-bold uppercase text-fg text-[1rem] tracking-[0.12em]">{fb.name}</span>
+                <span class="text-micro text-fg-dim flex-shrink-0">
                   {fb.created ? new Date(fb.created).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) : ''}
                 </span>
               </div>
-              <p class="font-label text-fg-dim text-[0.8rem] leading-[1.7] tracking-[0.04em]">{fb.comment}</p>
+              <p class="font-label text-fg text-[0.9rem] leading-[1.7] tracking-[0.04em]">{fb.comment}</p>
             </li>
           ))}
         </ol>
