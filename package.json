@@ -8,8 +8,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.5",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.1",
+    "fflate": "^0.8.2",
     "lucide-astro": "^0.556.0",
     "tailwindcss": "^4.2.2"
   }

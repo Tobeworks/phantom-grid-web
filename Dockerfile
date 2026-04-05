@@ -9,8 +9,15 @@ COPY . .
 RUN pnpm build
 
 # Runtime stage
-FROM nginx:alpine
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+FROM node:22-alpine
+WORKDIR /app
+
+COPY --from=build /app/dist ./dist
+
+ENV HOST=0.0.0.0
+ENV PORT=8080
+ENV NODE_ENV=production
 
 EXPOSE 8080
+
+CMD ["node", "./dist/server/entry.mjs"]
