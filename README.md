@@ -2,7 +2,7 @@
 
 Astro SSR frontend for [phantom-grid.de](https://phantom-grid.de).
 Built with Astro 6, Tailwind CSS v4, Node standalone adapter.
-Deployed via GitHub Actions → GHCR → ArgoCD on Kubernetes (netcup).
+Deployed via GitHub Actions → GHCR → ArgoCD on Kubernetes.
 
 ---
 
@@ -11,16 +11,20 @@ Deployed via GitHub Actions → GHCR → ArgoCD on Kubernetes (netcup).
 | Layer | Tech |
 |---|---|
 | Framework | Astro 6 (SSR, Node standalone) |
-| Styling | Tailwind CSS v4 (CSS-first config) |
+| Styling | Tailwind CSS v4 (CSS-first `@theme`) |
 | Backend | PocketBase (separate container) |
-| Deploy | Docker → ghcr.io → ArgoCD |
-| Data | `phantom-grid-os/data/releases.json` (git submodule) |
+| Deploy | Docker → `ghcr.io` → ArgoCD |
+| Data | `phantom-grid-os` (git submodule) |
 
 ---
 
 ## Local Setup
 
 ```bash
+# Clone with submodules
+git clone --recurse-submodules https://github.com/Tobeworks/phantom-grid-web.git
+cd phantom-grid-web
+
 # Install dependencies
 pnpm install
 
@@ -32,33 +36,128 @@ Requires Node 22+. Uses `pnpm` — never npm or yarn.
 
 ### Environment Variables
 
-Copy `.env.example` to `.env`:
-
 ```bash
 cp .env.example .env
 ```
 
 | Variable | Default | Description |
 |---|---|---|
-| `POCKETBASE_URL` | `http://localhost:8090` | PocketBase API endpoint |
+| `POCKETBASE_URL` | `http://localhost:8090` | PocketBase API endpoint (runtime, not build-time) |
 
 ---
 
-## Local PocketBase (for Promo Tool development)
+## Git Submodules
 
-The promo tool requires a running PocketBase instance. For local development:
+`phantom-grid-os` is embedded as a git submodule. This is the central data/config repository shared across all Phantom Grid tools — the web frontend, the social media animator, and any future satellite repos all read from it.
 
-### 1. Download PocketBase
+### Architecture
 
-```bash
-# macOS arm64
-curl -L https://github.com/pocketbase/pocketbase/releases/download/v0.36.8/pocketbase_0.36.8_darwin_arm64.zip -o /tmp/pb.zip
-unzip /tmp/pb.zip -d phantom-grid-os/tools/pocketbase/
+```
+phantom-grid-os/          ← central OS repo (submodule)
+├── data/releases.json    ← release catalog, tracks, CDN URLs
+├── tools/pocketbase/     ← PocketBase migrations
+└── docs/                 ← documentation
+
+phantom-grid-web/         ← this repo
+└── phantom-grid-os/      ← submodule pointer (pinned commit)
+
+phantom-grid-social/      ← future: social media animator
+└── phantom-grid-os/      ← same submodule
+
+phantom-grid-xyz/         ← future: any new satellite tool
+└── phantom-grid-os/      ← same submodule
 ```
 
-### 2. Run PocketBase with migrations
+The submodule is a **pointer to a specific commit** in `phantom-grid-os` — not a live reference. This ensures stability: a satellite repo only gets new OS data when explicitly updated.
+
+### Daily Workflow
+
+**After cloning (first time):**
+```bash
+git clone --recurse-submodules https://github.com/Tobeworks/phantom-grid-web.git
+```
+
+**If you forgot `--recurse-submodules`:**
+```bash
+git submodule update --init --recursive
+```
+
+**Pull latest changes including submodule updates:**
+```bash
+git pull
+git submodule update --remote --merge
+```
+
+**After phantom-grid-os gets new releases/data:**
+```bash
+cd phantom-grid-os
+git pull origin main
+cd ..
+git add phantom-grid-os
+git commit -m "chore: update phantom-grid-os submodule"
+git push
+```
+
+### Adding the Submodule to a New Satellite Repo
+
+Every new tool that needs access to releases, assets or migrations follows the same pattern:
 
 ```bash
+# Inside the new repo
+git submodule add https://github.com/Tobeworks/phantom-grid-os.git phantom-grid-os
+git commit -m "feat: add phantom-grid-os as submodule"
+git push
+```
+
+Then in your code, reference data directly:
+
+```ts
+// Astro / TypeScript
+import releasesData from '../phantom-grid-os/data/releases.json';
+
+// Node.js
+const releases = JSON.parse(fs.readFileSync('./phantom-grid-os/data/releases.json', 'utf8'));
+```
+
+**In GitHub Actions**, always add `submodules: recursive` to the checkout step:
+
+```yaml
+- uses: actions/checkout@v4
+  with:
+    submodules: recursive
+```
+
+Without this, the submodule folder will be empty in the CI build and the Docker image will fail.
+
+---
+
+## Promo Tool
+
+Token-gated listening pages for DJs. No account, no login — just a link with a token.
+
+Full backend documentation: [`phantom-grid-os/docs/promo-tool.md`](phantom-grid-os/docs/promo-tool.md)
+
+**URL format:**
+```
+https://phantom-grid.de/promo/[release-slug]?t=[TOKEN]
+```
+
+**API endpoints:**
+
+| Endpoint | Description |
+|---|---|
+| `GET /api/promo/download?t=TOKEN&q=128\|320` | ZIP of all tracks |
+| `GET /api/promo/download?t=TOKEN&q=128\|320&track=N` | Single track download |
+| `POST /api/promo/feedback` | Submit feedback |
+
+### Local PocketBase for development
+
+```bash
+# Download binary (macOS arm64 example)
+curl -L https://github.com/pocketbase/pocketbase/releases/download/v0.36.8/pocketbase_0.36.8_darwin_arm64.zip -o /tmp/pb.zip
+unzip /tmp/pb.zip pocketbase -d phantom-grid-os/tools/pocketbase/
+
+# Run with migrations
 cd phantom-grid-os/tools/pocketbase
 ./pocketbase serve \
   --http=0.0.0.0:8090 \
@@ -66,49 +165,25 @@ cd phantom-grid-os/tools/pocketbase
   --migrationsDir=./pb_migrations
 ```
 
-PocketBase läuft dann auf `http://localhost:8090`.
-Admin UI: `http://localhost:8090/_/`
-Beim ersten Start: Superuser-Account anlegen (Email + Passwort).
+Admin UI: `http://localhost:8090/_/` — create a superuser account on first run.
 
-### 3. Promo-Link lokal testen
-
+Test a promo link locally:
 ```
 http://localhost:4321/promo/pg-001?t=TEST123
 ```
 
-Dafür muss ein Promo-Record in der Admin UI angelegt sein:
-→ `http://localhost:8090/_/` → Collections → promos → New record
+(Requires a matching record in the `promos` collection.)
 
----
-
-## Promo Tool
-
-Token-geschützte Seiten für DJs. Vollständige Dokumentation:
-→ [`phantom-grid-os/docs/promo-tool.md`](../phantom-grid-os/docs/promo-tool.md)
-
-**URL-Format:**
+**Production admin:**
 ```
-https://phantom-grid.de/promo/[release-slug]?t=[TOKEN]
+https://pb.phantom-grid.de/_/
 ```
-
-**API Endpoints:**
-| Endpoint | Beschreibung |
-|---|---|
-| `GET /api/promo/download?t=TOKEN&q=128\|320` | ZIP aller Tracks |
-| `GET /api/promo/download?t=TOKEN&q=128\|320&track=N` | Einzeltrack |
-| `POST /api/promo/feedback` | Feedback speichern |
 
 ---
 
 ## Deployment
 
-Push auf `main` → GitHub Actions baut Docker Image → pusht nach `ghcr.io/tobeworks/phantom-grid-web:latest` → ArgoCD Image Updater deployed automatisch.
-
-### Production PocketBase Admin
-
-```
-https://pb.phantom-grid.de/_/
-```
+Push to `main` → GitHub Actions builds Docker image → pushes to `ghcr.io/tobeworks/phantom-grid-web:latest` → ArgoCD Image Updater detects new digest → deploys automatically.
 
 ---
 
@@ -116,19 +191,19 @@ https://pb.phantom-grid.de/_/
 
 ```
 src/
-├── components/        — Astro components (AudioPlayer, ReleaseCard, …)
-├── layouts/           — BaseLayout
+├── components/           Astro components (AudioPlayer, ReleaseCard, …)
+├── layouts/              BaseLayout
 ├── lib/
-│   ├── pocketbase.ts  — PocketBase API helpers
-│   └── errorPages.ts  — Styled error HTML generator
+│   ├── pocketbase.ts     PocketBase API helpers
+│   └── errorPages.ts     Styled HTML error generator
 ├── pages/
-│   ├── index.astro    — Homepage (static)
-│   ├── releases/      — Release pages (static)
+│   ├── index.astro       Homepage (static)
+│   ├── releases/         Release detail pages (static)
 │   ├── promo/
-│   │   └── [slug].astro  — Token-gated promo page (SSR)
+│   │   └── [slug].astro  Token-gated promo page (SSR)
 │   └── api/promo/
-│       ├── download.ts   — Download endpoint (SSR)
-│       └── feedback.ts   — Feedback endpoint (SSR)
+│       ├── download.ts   Download endpoint — single track + ZIP (SSR)
+│       └── feedback.ts   Feedback POST endpoint (SSR)
 └── styles/
-    └── global.css     — Tailwind v4 @theme + component layer
+    └── global.css        Tailwind v4 @theme + component layer
 ```
