@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Unsubscribed — PHANTOM GRID"
+  description="You have been removed from the Phantom Grid newsletter."
+>
+  <div class="nl-status">
+    <div class="nl-status__inner">
+      <span class="text-eyebrow">// SIGNAL_TERMINATED</span>
+      <h1 class="nl-status__title">Unsubscribed.</h1>
+      <p class="nl-status__body">
+        Your address has been removed from the list. No further transmissions will be sent.
+      </p>
+      <div class="nl-status__actions">
+        <a href="/" class="btn btn--ghost">BACK TO GRID</a>
+        <a href="/newsletter" class="nl-status__resubscribe">Resubscribe</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .nl-status {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .nl-status__inner {
+    width: 100%;
+    max-width: 36rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .nl-status__title {
+    font-family: var(--font-label);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .nl-status__body {
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .nl-status__actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .nl-status__resubscribe {
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nl-status__resubscribe:hover {
+    color: var(--color-accent);
+  }
+</style>

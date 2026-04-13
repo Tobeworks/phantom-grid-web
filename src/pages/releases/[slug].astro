@@ -54,7 +54,7 @@ const seoUrl         = new URL(`releases/${slug}`, Astro.site).href;
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-start">
 
       <!-- Artwork -->
-      <div class="sticky top-8">
+      <div class="top-8">
         {art1500jpg ? (
           <picture>
             {art1500webp && <source srcset={art1500webp} type="image/webp" />}
