@@ -2,11 +2,14 @@
 interface Track {
   number: number;
   title: string;
-  bpm: string;
-  key: string;
   runtime: string;
   url: string;
   url_320: string;
+}
+
+interface Platform {
+  name: string;
+  url: string;
 }
 
 interface Release {
@@ -18,7 +21,7 @@ interface Release {
   genre: string;
   cover: string;
   artwork: Record<string, { jpg: string; webp: string }>;
-  bandcamp: string;
+  platforms: Platform[];
   tracks: Track[];
 }
 
