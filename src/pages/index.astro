@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import LedArray from "../components/LedArray.astro";
 import ReleaseList from "../components/ReleaseList.astro";
 import TerminalRain from "../components/TerminalRain.astro";
-import pkg from "../../package.json";
 ---
 
 <BaseLayout
@@ -103,15 +102,6 @@ import pkg from "../../package.json";
       <ReleaseList />
     </div>
   </section>
-
-  <footer class="text-center py-12 px-4 text-[0.65rem] tracking-[0.2em] text-fg-muted uppercase border-t border-border">
-    EST. 2026 — CYBERSPACE —
-    <a href="https://phantomgrid.bandcamp.com/" target="_blank" rel="noopener noreferrer"
-       class="text-fg-faint no-underline transition-colors duration-200 hover:text-accent">
-      BANDCAMP
-    </a>
-    — v{pkg.version}
-  </footer>
 
 </BaseLayout>
 

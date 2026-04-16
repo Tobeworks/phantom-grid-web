@@ -1,0 +1,47 @@
+---
+import { Github, ExternalLink } from 'lucide-astro';
+import pkg from '../../package.json';
+
+const socialLinks = [
+  { label: 'GitHub', href: 'https://github.com/Tobeworks/phantom-grid-os', icon: Github },
+  { label: 'Bandcamp', href: 'https://phantomgrid.bandcamp.com/', icon: ExternalLink },
+];
+---
+
+<footer class="px-6 lg:px-10 py-8 border-t border-border flex items-center justify-between gap-8 flex-wrap">
+  <a href="/" class="font-label font-bold text-[0.7rem] tracking-[0.22em] uppercase text-fg no-underline hover:text-accent transition-colors duration-200">
+    Phantom Grid
+  </a>
+
+  <nav class="flex items-center gap-8 flex-wrap">
+    <a href="/#releases" class="font-label text-[0.68rem] tracking-[0.22em] uppercase text-fg-muted no-underline transition-colors duration-200 hover:text-fg-dim">
+      Releases
+    </a>
+    <a href="/newsletter" class="font-label text-[0.68rem] tracking-[0.22em] uppercase text-fg-muted no-underline transition-colors duration-200 hover:text-fg-dim">
+      Newsletter
+    </a>
+    <div class="w-px h-4 bg-border"></div>
+    {socialLinks.map(({ label, href, icon: Icon }) => (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-fg-muted transition-colors duration-200 hover:text-fg"
+        aria-label={label}>
+        <Icon size={16} />
+      </a>
+    ))}
+  </nav>
+
+  <div class="flex items-center gap-6 flex-wrap">
+    <a href="/impressum" class="font-label text-[0.6rem] tracking-[0.2em] uppercase text-fg-muted no-underline transition-colors duration-200 hover:text-fg-dim">
+      Impressum
+    </a>
+    <a href="/datenschutz" class="font-label text-[0.6rem] tracking-[0.2em] uppercase text-fg-muted no-underline transition-colors duration-200 hover:text-fg-dim">
+      Datenschutz
+    </a>
+    <span class="font-mono text-[0.53rem] tracking-[0.2em] uppercase text-fg-muted">
+      EST. 2026 — v{pkg.version}
+    </span>
+  </div>
+</footer>
