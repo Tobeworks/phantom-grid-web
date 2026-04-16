@@ -2,7 +2,9 @@
 import ReleaseCard from './ReleaseCard.astro';
 import releasesData from '../../phantom-grid-os/data/releases.json';
 
-const releases = releasesData.releases;
+const releases = [...releasesData.releases].sort((a, b) =>
+  b.catalog.localeCompare(a.catalog, undefined, { numeric: true })
+);
 ---
 
 <section class="release-list">
