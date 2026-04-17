@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LedArray from '../components/LedArray.astro';
+---
+
+<BaseLayout title="404 — PHANTOM GRID" description="Transmission interrupted.">
+  <div class="min-h-screen flex flex-col items-center justify-center px-6 text-center gap-8">
+
+    <LedArray code="ERR" size="sm" />
+
+    <div class="flex flex-col gap-3">
+      <span class="text-eyebrow text-accent">// TRANSMISSION INTERRUPTED</span>
+      <h1 class="font-label font-bold uppercase text-fg tracking-[0.15em] text-[clamp(4rem,14vw,10rem)] leading-[0.85] glitch-404">
+        404
+      </h1>
+      <p class="font-label font-semibold uppercase text-fg-muted text-[0.75rem] tracking-[0.25em]">
+        This frequency does not exist.
+      </p>
+    </div>
+
+    <a
+      href="/"
+      class="font-label text-[0.7rem] tracking-[0.3em] uppercase text-fg-dim no-underline transition-colors duration-200 hover:text-accent">
+      ← Return to base
+    </a>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .glitch-404 {
+    position: relative;
+    animation: glitch-404 8s step-end infinite;
+  }
+
+  .glitch-404::before,
+  .glitch-404::after {
+    content: '404';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .glitch-404::before {
+    color: var(--color-accent);
+    animation: glitch-404-before 8s step-end infinite;
+  }
+
+  .glitch-404::after {
+    color: var(--color-cyan);
+    animation: glitch-404-after 8s step-end infinite;
+  }
+
+  @keyframes glitch-404 {
+    0%, 92%, 94%, 96%, 100% { transform: none; opacity: 1; }
+    93% { transform: translateX(-0.1em) skewX(-2deg); opacity: 0.8; }
+    95% { transform: translateX(0.05em) skewX(1deg); opacity: 0.9; }
+  }
+
+  @keyframes glitch-404-before {
+    0%, 92%, 94%, 96%, 100% { opacity: 0; transform: none; }
+    93% { opacity: 0.6; transform: translateX(0.15em) skewX(-3deg); }
+    95% { opacity: 0.4; transform: translateX(-0.1em) skewX(2deg); }
+  }
+
+  @keyframes glitch-404-after {
+    0%, 92%, 94%, 96%, 100% { opacity: 0; transform: none; }
+    93% { opacity: 0.5; transform: translateX(-0.12em) skewX(2deg); }
+    95% { opacity: 0.3; transform: translateX(0.08em) skewX(-1deg); }
+  }
+</style>
