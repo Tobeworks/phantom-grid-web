@@ -3,6 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import LedArray from "../components/LedArray.astro";
 import ReleaseList from "../components/ReleaseList.astro";
 import TerminalRain from "../components/TerminalRain.astro";
+import releasesData from "../../phantom-grid-os/data/releases.json";
+
+const latestCatalog = releasesData.releases
+  .map((r) => r.catalog)
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  .at(-1) ?? "PG-001";
 ---
 
 <BaseLayout
@@ -17,7 +23,7 @@ import TerminalRain from "../components/TerminalRain.astro";
 
     <div class="relative z-[1] flex flex-col items-center">
       <div class="mb-16">
-        <LedArray code="PG-001" />
+        <LedArray code={latestCatalog} />
       </div>
 
       <h1 class="home__wordmark">Phantom Grid</h1>

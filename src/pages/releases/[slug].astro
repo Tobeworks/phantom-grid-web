@@ -1,14 +1,11 @@
 ---
+export const prerender = false;
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AudioPlayer from '../../components/AudioPlayer.astro';
 import LedArray from '../../components/LedArray.astro';
 import releasesData from '../../../phantom-grid-os/data/releases.json';
-
-export function getStaticPaths() {
-  return releasesData.releases.map((r) => ({
-    params: { slug: r.catalog.toLowerCase() },
-  }));
-}
+import { getFeedbackForRelease } from '../../lib/pocketbase';
 
 const { slug } = Astro.params;
 const release = releasesData.releases.find(
@@ -16,6 +13,8 @@ const release = releasesData.releases.find(
 );
 
 if (!release) return Astro.redirect('/404');
+
+const feedback = await getFeedbackForRelease(slug!);
 
 const { catalog, artist, title, format, year, genre, artwork, cover, tracks, platforms, release_date } = release;
 
@@ -125,9 +124,42 @@ const seoUrl         = new URL(`releases/${slug}`, Astro.site).href;
           <LedArray code={catalog} size="sm" />
         </div>
 
-        <div>
-          <AudioPlayer tracks={playerTracks} />
-        </div>
+        <!-- Audio player (only if released) -->
+        {isReleased ? (
+          <div>
+            <AudioPlayer tracks={playerTracks} />
+          </div>
+        ) : (
+          <div class="border border-border p-5 flex flex-col gap-2">
+            <span class="font-mono text-[0.6rem] tracking-[0.25em] uppercase text-accent">// TRANSMISSION_PENDING</span>
+            <p class="font-mono text-[0.55rem] tracking-[0.18em] uppercase text-fg-muted">
+              Available {formattedReleaseDate}
+            </p>
+          </div>
+        )}
+
+        <!-- Feedback -->
+        {feedback.length > 0 && (
+          <div class="flex flex-col gap-4 pt-2">
+            <span class="font-mono text-[0.6rem] tracking-[0.25em] uppercase text-accent">// TRANSMISSIONS_RECEIVED</span>
+            {feedback.map((f) => (
+              <div class="border border-border p-4 flex flex-col gap-2">
+                <p class="font-label text-[0.75rem] tracking-[0.08em] text-fg-dim leading-relaxed">"{f.comment}"</p>
+                <div class="flex items-baseline gap-3 flex-wrap">
+                  <span class="font-mono text-[0.55rem] tracking-[0.2em] uppercase text-fg-muted">{f.name}</span>
+                  {f.url && (
+                    <a
+                      href={f.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-mono text-[0.5rem] tracking-[0.15em] uppercase text-accent no-underline opacity-70 hover:opacity-100 transition-opacity"
+                    >{new URL(f.url).hostname} ↗</a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
       </div>
   </div>

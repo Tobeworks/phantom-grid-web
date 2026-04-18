@@ -195,6 +195,16 @@ const feedbacks = await getFeedbackForRelease(slug!);
           />
         </div>
 
+        <div class="flex flex-col gap-3">
+          <label class="text-eyebrow" for="fb-url">
+            YOUR WEBSITE / PUBLICATION <span class="text-accent" style="font-size:0.6rem;">(OPTIONAL)</span>
+          </label>
+          <input id="fb-url" name="url" type="url" class="pg-input" placeholder="HTTPS://YOURSITE.COM" />
+          <p class="font-mono text-[0.55rem] tracking-[0.15em] text-fg-muted leading-relaxed">
+            Leave a link to your blog, label, or publication — it will appear next to your comment on the release page.
+          </p>
+        </div>
+
         <div class="flex flex-col gap-2">
           <label class="text-eyebrow" for="fb-comment">FEEDBACK</label>
           <textarea
@@ -207,13 +217,16 @@ const feedbacks = await getFeedbackForRelease(slug!);
           />
         </div>
 
-        <div class="flex items-center gap-4">
-          <button type="submit" class="btn btn--primary">
-            TRANSMIT FEEDBACK
-          </button>
-          <span id="fb-status" class="text-micro text-fg-dim" aria-live="polite"></span>
-        </div>
-      </form>
+          <div class="flex items-center gap-4">
+            <button type="submit" class="btn btn--primary">
+              TRANSMIT FEEDBACK
+            </button>
+            <span id="fb-status" class="text-micro text-fg-dim" aria-live="polite"></span>
+          </div>
+          <p class="font-mono text-[0.55rem] tracking-[0.18em] uppercase text-fg-muted mt-1">
+            Your name and comment may be published on the release page.
+          </p>
+        </form>
 
       <!-- Success state -->
       <div id="promo-feedback-success" class="promo__success hidden">
@@ -231,7 +244,17 @@ const feedbacks = await getFeedbackForRelease(slug!);
           {feedbacks.map((fb) => (
             <li class="promo__feedback-item">
               <div class="flex items-baseline justify-between gap-4 mb-2">
-                <span class="font-label font-bold uppercase text-fg text-[1rem] tracking-[0.12em]">{fb.name}</span>
+                <div class="flex items-baseline gap-3 flex-wrap">
+                  <span class="font-label font-bold uppercase text-fg text-[1rem] tracking-[0.12em]">{fb.name}</span>
+                  {fb.url && (
+                    <a
+                      href={fb.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-mono text-[0.5rem] tracking-[0.15em] uppercase text-accent no-underline opacity-70 hover:opacity-100 transition-opacity"
+                    >{new URL(fb.url).hostname} ↗</a>
+                  )}
+                </div>
                 <span class="text-micro text-fg-dim flex-shrink-0">
                   {fb.created ? new Date(fb.created).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) : ''}
                 </span>
