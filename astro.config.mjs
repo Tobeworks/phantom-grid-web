@@ -1,10 +1,16 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 import node from '@astrojs/node';
+import tailwindcss from '@tailwindcss/vite';
+import vue from '@astrojs/vue';
 
 export default defineConfig({
   site: 'https://phantom-grid.de',
+  output: 'static',
+  integrations: [vue()],
   adapter: node({ mode: 'standalone' }),
+  security: {
+    checkOrigin: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

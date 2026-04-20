@@ -15,15 +15,15 @@ const error = Astro.url.searchParams.get('error') ?? undefined;
     <div class="nl-page__inner">
 
       <header class="nl-page__header">
-        <span class="text-eyebrow">// SIGNAL_LIST</span>
-        <h1 class="nl-page__title">Newsletter</h1>
+        <span class="text-eyebrow">// TRANSMISSION_OPEN</span>
+        <h1 class="nl-page__title">Join the List.</h1>
         <p class="nl-page__sub">
           New releases. Label transmissions. No algorithm. No noise.
           Straight to your inbox when something worth hearing drops.
         </p>
       </header>
 
-      <div class="nl-page__form pg-surface">
+      <div class="nl-page__form">
         <NewsletterForm error={error} />
       </div>
 
@@ -81,6 +81,8 @@ const error = Astro.url.searchParams.get('error') ?? undefined;
 
   .nl-page__form {
     padding: 2rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-low);
   }
 
   .nl-page__back {

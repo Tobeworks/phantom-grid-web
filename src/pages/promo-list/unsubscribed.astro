@@ -1,20 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const error = Astro.url.searchParams.get('error');
 ---
 
 <BaseLayout
   title="Unsubscribed — PHANTOM GRID"
-  description="You have been removed from the Phantom Grid newsletter."
+  description="You have been removed from the Phantom Grid promo list."
 >
   <div class="nl-status">
     <div class="nl-status__inner">
-      <span class="text-eyebrow">// SIGNAL_TERMINATED</span>
-      <h1 class="nl-status__title">Done.</h1>
+      <span class="text-eyebrow">{ error ? '// ERROR' : '// SIGNAL_TERMINATED' }</span>
+      <h1 class="nl-status__title">{ error ? 'Invalid link.' : 'Done.' }</h1>
       <p class="nl-status__body">
-        You have been removed from the Phantom Grid newsletter.
+        { error
+          ? 'This unsubscribe link is invalid or has already been used.'
+          : 'You have been removed from the promo list.'
+        }
       </p>
       <div class="nl-status__actions">
-        <a href="/" class="btn btn--primary">BACK TO GRID</a>
+        <a href="/" class="btn btn--primary">Back to Phantom Grid</a>
       </div>
     </div>
   </div>
@@ -28,7 +32,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     justify-content: center;
     padding: 4rem 1.5rem;
   }
-
   .nl-status__inner {
     width: 100%;
     max-width: 36rem;
@@ -36,7 +39,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     flex-direction: column;
     gap: 1.25rem;
   }
-
   .nl-status__title {
     font-family: var(--font-label);
     font-size: clamp(2rem, 6vw, 3.5rem);
@@ -47,7 +49,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin: 0;
     line-height: 1;
   }
-
   .nl-status__body {
     font-family: var(--font-label);
     font-size: 0.9rem;
@@ -58,7 +59,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.7;
     margin: 0;
   }
-
   .nl-status__actions {
     display: flex;
     gap: 1rem;

@@ -1,4 +1,4 @@
-const PB_URL = process.env.POCKETBASE_URL ?? import.meta.env.POCKETBASE_URL ?? 'http://pocketbase:8090';
+const PB_URL = process.env.POCKETBASE_URL ?? import.meta.env.POCKETBASE_URL ?? 'http://localhost:8090';
 
 export interface PromoRecord {
   id: string;
@@ -227,4 +227,126 @@ export async function logDownload(payload: {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   }).catch(() => {});
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Campaigns
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface Campaign {
+  id: string;
+  subject: string;
+  body_html: string;
+  body_md?: string;
+  body_text?: string;
+  status: 'draft' | 'sending' | 'sent';
+  sent_at?: string;
+  sent_count?: number;
+  failed_count?: number;
+  created: string;
+  updated: string;
+}
+
+export async function getCampaigns(): Promise<Campaign[]> {
+  try {
+    const res = await fetch(`${PB_URL}/api/collections/campaigns/records?perPage=100`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.items ?? []) as Campaign[];
+  } catch { return []; }
+}
+
+export async function getCampaign(id: string): Promise<Campaign | null> {
+  try {
+    const res = await fetch(`${PB_URL}/api/collections/campaigns/records/${id}`);
+    if (!res.ok) return null;
+    return await res.json() as Campaign;
+  } catch { return null; }
+}
+
+export async function createCampaign(subject: string, bodyHtml: string, bodyText: string): Promise<Campaign> {
+  const res = await fetch(`${PB_URL}/api/collections/campaigns/records`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ subject, body_html: bodyHtml || ' ', body_text: bodyText, status: 'draft', sent_count: 0, failed_count: 0 }),
+  });
+  if (!res.ok) throw new Error(`Failed to create campaign: ${res.status}`);
+  return res.json();
+}
+
+export async function updateCampaign(id: string, fields: Partial<Campaign>): Promise<Campaign> {
+  const res = await fetch(`${PB_URL}/api/collections/campaigns/records/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(fields),
+  });
+  if (!res.ok) throw new Error(`Failed to update campaign: ${res.status}`);
+  return res.json();
+}
+
+export async function deleteCampaign(id: string): Promise<void> {
+  await fetch(`${PB_URL}/api/collections/campaigns/records/${id}`, { method: 'DELETE' });
+}
+
+export async function getConfirmedSubscribers(): Promise<NewsletterSubscriber[]> {
+  try {
+    const filter = encodeURIComponent(`confirmed=true`);
+    const res = await fetch(`${PB_URL}/api/collections/newsletter_subscribers/records?filter=${filter}&perPage=1000`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.items ?? []) as NewsletterSubscriber[];
+  } catch { return []; }
+}
+
+// ── Promo Subscribers ─────────────────────────────────────────────────────
+
+export interface PromoSubscriber {
+  id: string;
+  email: string;
+  name?: string;
+  unsubscribe_token: string;
+  created: string;
+}
+
+export async function getPromoSubscribers(): Promise<PromoSubscriber[]> {
+  try {
+    const res = await fetch(`${PB_URL}/api/collections/promo_subscribers/records?perPage=1000`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.items ?? []) as PromoSubscriber[];
+  } catch { return []; }
+}
+
+export async function getPromoSubscriberByEmail(email: string): Promise<PromoSubscriber | null> {
+  try {
+    const filter = encodeURIComponent(`email="${email}"`);
+    const res = await fetch(`${PB_URL}/api/collections/promo_subscribers/records?filter=${filter}&perPage=1`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.items?.[0] ?? null;
+  } catch { return null; }
+}
+
+export async function getPromoSubscriberByToken(token: string): Promise<PromoSubscriber | null> {
+  try {
+    const filter = encodeURIComponent(`unsubscribe_token="${token}"`);
+    const res = await fetch(`${PB_URL}/api/collections/promo_subscribers/records?filter=${filter}&perPage=1`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.items?.[0] ?? null;
+  } catch { return null; }
+}
+
+export async function createPromoSubscriber(email: string, name: string, token: string): Promise<PromoSubscriber> {
+  const res = await fetch(`${PB_URL}/api/collections/promo_subscribers/records`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, name, unsubscribe_token: token }),
+  });
+  if (!res.ok) throw new Error(`Failed to create promo subscriber: ${res.status}`);
+  return res.json();
+}
+
+export async function deletePromoSubscriber(id: string): Promise<void> {
+  await fetch(`${PB_URL}/api/collections/promo_subscribers/records/${id}`, { method: 'DELETE' });
 }
