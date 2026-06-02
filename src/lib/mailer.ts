@@ -170,3 +170,41 @@ export async function sendPromoWelcomeEmail(
 
   await transporter.sendMail({ from: FROM, to, subject: 'Welcome to the Promo List — PHANTOM GRID', html, text });
 }
+
+export async function sendBandcampPromoEmail(
+  to: string,
+  name: string,
+  promoUrl: string,
+  releaseTitle: string,
+): Promise<void> {
+  const greeting = name ? `${name},` : 'Hey,';
+
+  const html = baseHtml(`
+    <h1 style="margin:0 0 16px;color:#E8E4D8;font-size:22px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;">
+      Your Download Is Ready
+    </h1>
+    <p style="margin:0 0 8px;color:rgba(220,220,220,0.6);font-size:13px;letter-spacing:0.08em;line-height:1.8;">
+      ${greeting} thank you for purchasing <strong style="color:#E8E4D8;">${releaseTitle}</strong>.
+    </p>
+    <p style="margin:0 0 24px;color:rgba(220,220,220,0.6);font-size:13px;letter-spacing:0.08em;line-height:1.8;">
+      Your personal download link is below. Use it to access lossless files, stream the release,
+      and leave feedback. This link is unique to your purchase &mdash; do not share it.
+    </p>
+    <a href="${promoUrl}" style="display:inline-block;background:#D6524C;color:#fff;font-size:12px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;padding:13px 28px;text-decoration:none;">
+      ACCESS DOWNLOAD
+    </a>
+    <p style="margin:28px 0 0;color:rgba(220,220,220,0.25);font-size:11px;letter-spacing:0.08em;line-height:1.7;">
+      Link: <a href="${promoUrl}" style="color:rgba(214,82,76,0.5);">${promoUrl}</a>
+    </p>
+  `);
+
+  const text = `${greeting}\n\nThank you for purchasing ${releaseTitle}.\n\nYour personal download link:\n${promoUrl}\n\nThis link is unique to your purchase — do not share it.`;
+
+  await transporter.sendMail({
+    from: FROM,
+    to,
+    subject: `Your download: ${releaseTitle} — PHANTOM GRID`,
+    html,
+    text,
+  });
+}
