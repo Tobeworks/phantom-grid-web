@@ -1,5 +1,10 @@
 const PB_URL = process.env.POCKETBASE_URL ?? import.meta.env.POCKETBASE_URL ?? 'http://localhost:8090';
 
+/** Escapes a value for safe use inside a PocketBase filter string literal. */
+function pbEscape(value: string): string {
+  return value.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
 export interface PromoRecord {
   id: string;
   token: string;
@@ -12,7 +17,7 @@ export interface PromoRecord {
 
 /** Finds a promo record by token. Returns null if not found. */
 export async function getPromoByToken(token: string): Promise<PromoRecord | null> {
-  const filter = encodeURIComponent(`token='${token}'`);
+  const filter = encodeURIComponent(`token='${pbEscape(token)}'`);
   try {
     const res = await fetch(
       `${PB_URL}/api/collections/promos/records?filter=${filter}&perPage=1`,
@@ -36,7 +41,7 @@ export interface FeedbackRecord {
 
 /** Loads all feedback for a given release slug (via promo relation). */
 export async function getFeedbackForRelease(releaseSlug: string): Promise<FeedbackRecord[]> {
-  const filter = encodeURIComponent(`release_slug='${releaseSlug}'`);
+  const filter = encodeURIComponent(`release_slug='${pbEscape(releaseSlug)}'`);
   try {
     const authHeader = {};
 
@@ -101,7 +106,7 @@ export interface NewsletterSubscriber {
 
 /** Finds a subscriber by email. Returns null if not found. */
 export async function getSubscriberByEmail(email: string): Promise<NewsletterSubscriber | null> {
-  const filter = encodeURIComponent(`email='${email}'`);
+  const filter = encodeURIComponent(`email='${pbEscape(email)}'`);
   try {
     const res = await fetch(
       `${PB_URL}/api/collections/newsletter_subscribers/records?filter=${filter}&perPage=1`,
@@ -161,7 +166,7 @@ export async function refreshConfirmationToken(id: string): Promise<NewsletterSu
 
 /** Confirms a subscriber by their confirmation token. Returns null if token invalid or expired. */
 export async function confirmSubscriber(token: string): Promise<NewsletterSubscriber | null> {
-  const filter = encodeURIComponent(`confirmation_token='${token}'`);
+  const filter = encodeURIComponent(`confirmation_token='${pbEscape(token)}'`);
   try {
     const listRes = await fetch(
       `${PB_URL}/api/collections/newsletter_subscribers/records?filter=${filter}&perPage=1`,
@@ -194,7 +199,7 @@ export async function confirmSubscriber(token: string): Promise<NewsletterSubscr
 
 /** Deletes a subscriber by their unsubscribe token. Returns true on success. */
 export async function unsubscribeByToken(token: string): Promise<boolean> {
-  const filter = encodeURIComponent(`unsubscribe_token='${token}'`);
+  const filter = encodeURIComponent(`unsubscribe_token='${pbEscape(token)}'`);
   try {
     const listRes = await fetch(
       `${PB_URL}/api/collections/newsletter_subscribers/records?filter=${filter}&perPage=1`,
@@ -319,7 +324,7 @@ export async function getPromoSubscribers(): Promise<PromoSubscriber[]> {
 
 export async function getPromoSubscriberByEmail(email: string): Promise<PromoSubscriber | null> {
   try {
-    const filter = encodeURIComponent(`email="${email}"`);
+    const filter = encodeURIComponent(`email='${pbEscape(email)}'`);
     const res = await fetch(`${PB_URL}/api/collections/promo_subscribers/records?filter=${filter}&perPage=1`);
     if (!res.ok) return null;
     const data = await res.json();
@@ -329,7 +334,7 @@ export async function getPromoSubscriberByEmail(email: string): Promise<PromoSub
 
 export async function getPromoSubscriberByToken(token: string): Promise<PromoSubscriber | null> {
   try {
-    const filter = encodeURIComponent(`unsubscribe_token="${token}"`);
+    const filter = encodeURIComponent(`unsubscribe_token='${pbEscape(token)}'`);
     const res = await fetch(`${PB_URL}/api/collections/promo_subscribers/records?filter=${filter}&perPage=1`);
     if (!res.ok) return null;
     const data = await res.json();
