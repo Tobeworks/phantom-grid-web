@@ -42,6 +42,33 @@ const seoTitle       = `${artist} — ${title} | PHANTOM GRID`;
 const seoDescription = `${catalog}${genre ? ` · ${genre}` : ''}${year ? ` · ${year}` : ''} · ${tracks.length} track${tracks.length !== 1 ? 's' : ''}. Independent electronic music on Phantom Grid.`;
 const seoImage       = artwork?.['1500']?.jpg || cover;
 const seoUrl         = new URL(`releases/${slug}`, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicAlbum',
+  name: title,
+  url: seoUrl,
+  ...(seoImage ? { image: seoImage } : {}),
+  byArtist: {
+    '@type': 'MusicGroup',
+    name: artist,
+  },
+  albumReleaseType: 'https://schema.org/SingleRelease',
+  ...(release_date ? { datePublished: release_date.slice(0, 10) } : {}),
+  ...(genre ? { genre } : {}),
+  numTracks: tracks.length,
+  track: tracks.map((t) => ({
+    '@type': 'MusicRecording',
+    name: t.title,
+    trackNumber: t.number,
+    ...(t.url ? { url: t.url } : {}),
+  })),
+  publisher: {
+    '@type': 'Organization',
+    name: 'Phantom Grid',
+    url: Astro.site?.toString() ?? 'https://phantom-grid.de',
+  },
+};
 ---
 
 <BaseLayout
@@ -50,6 +77,7 @@ const seoUrl         = new URL(`releases/${slug}`, Astro.site).href;
   image={seoImage}
   canonicalUrl={seoUrl}
   type="music.album"
+  jsonLd={jsonLd}
 >
   <div class="max-w-7xl mx-auto px-8 py-8 pb-24 min-h-screen">
 
