@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIContext } from 'astro';
-import { deletePromoSubscriber } from '../../../../lib/pocketbase';
+import { deletePromoSubscriber } from '../../../../../lib/pocketbase';
 
 export const DELETE = async ({ params }: APIContext) => {
   await deletePromoSubscriber(params.id!);

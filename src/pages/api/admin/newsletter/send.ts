@@ -28,7 +28,11 @@ export const POST = async ({ request }: APIContext) => {
   let sent = 0;
   let failed = 0;
 
-  for (const sub of subscribers) {
+  const BATCH_SIZE = 50;
+  const BATCH_DELAY_MS = 2000;
+
+  for (let i = 0; i < subscribers.length; i++) {
+    const sub = subscribers[i];
     try {
       await sendCampaignEmail(
         sub.email,
@@ -43,6 +47,9 @@ export const POST = async ({ request }: APIContext) => {
     } catch (e) {
       console.error(`[campaign] failed to send to ${sub.email}:`, e);
       failed++;
+    }
+    if ((i + 1) % BATCH_SIZE === 0 && i + 1 < subscribers.length) {
+      await new Promise(resolve => setTimeout(resolve, BATCH_DELAY_MS));
     }
   }
 

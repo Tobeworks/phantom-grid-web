@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIContext } from 'astro';
-import { getCampaign, updateCampaign, deleteCampaign } from '../../../../lib/pocketbase';
+import { getCampaign, updateCampaign, deleteCampaign } from '../../../../../lib/pocketbase';
 
 export const GET = async ({ params }: APIContext) => {
   const campaign = await getCampaign(params.id!);
